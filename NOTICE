@@ -1,0 +1,9 @@
+CAIT Certificate Schema
+
+This repository provides JSON Schemas and local validation tooling derived from:
+
+Takahashi, K. (2026). Certified Autocatalytic Intelligence Theory:
+Net-Growth Certificate Algebra for Verified Capability Capital. Zenodo.
+https://doi.org/10.5281/zenodo.20061296
+
+The repository is distributed under the Apache License, Version 2.0.

@@ -1,0 +1,37 @@
+{
+  "record_type": "certificate_record",
+  "certificate_id": "cert_synthetic_001",
+  "lifecycle_status": "accepted",
+  "positive_capital_effect": "full",
+  "interval": {
+    "lower": 1.0,
+    "upper": 1.4,
+    "unit": "verified_capability_tokens",
+    "confidence": 0.95
+  },
+  "evidence_mode": "replay_certificate",
+  "scope": [
+    "synthetic_code_repair"
+  ],
+  "dependency_links": [
+    "tok_synthetic_001"
+  ],
+  "evidence_links": [
+    "replay_synthetic_001"
+  ],
+  "defeaters": [],
+  "freshness": "pass",
+  "provenance_commitments": [
+    "sha256:synthetic"
+  ],
+  "claimed_strengthening": false,
+  "domain_witness_required": true,
+  "domain_witness": {
+    "compatible_scope": true,
+    "accepted_dependencies": true,
+    "valid_budget": true,
+    "fresh_evidence": true,
+    "no_open_blocking_defeater": true,
+    "disjoint_support": true
+  }
+}

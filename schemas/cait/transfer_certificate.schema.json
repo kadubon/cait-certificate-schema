@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/transfer_certificate.schema.json",
+  "title": "CAIT Transfer Certificate",
+  "description": "Source-to-target transfer and semantic persistence certificate.",
+  "type": "object",
+  "required": [
+    "record_type",
+    "transfer_certificate_id",
+    "source_coordinates",
+    "target_coordinates",
+    "accepted_target_coordinates",
+    "semantic_persistence_interval",
+    "transfer_status"
+  ],
+  "properties": {
+    "record_type": { "const": "transfer_certificate" },
+    "transfer_certificate_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "source_coordinates": { "$ref": "common.schema.json#/$defs/string_array" },
+    "target_coordinates": { "$ref": "common.schema.json#/$defs/string_array" },
+    "accepted_target_coordinates": { "$ref": "common.schema.json#/$defs/string_array" },
+    "causal_abstraction_map": { "$ref": "common.schema.json#/$defs/string_array" },
+    "transport_assumptions": { "$ref": "common.schema.json#/$defs/string_array" },
+    "semantic_persistence_interval": { "$ref": "common.schema.json#/$defs/interval" },
+    "risk_control_rule": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "transfer_status": { "$ref": "common.schema.json#/$defs/decision_status" }
+  },
+  "additionalProperties": false
+}

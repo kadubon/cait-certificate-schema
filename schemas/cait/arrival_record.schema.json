@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/arrival_record.schema.json",
+  "title": "CAIT Arrival Record",
+  "description": "Certificate-relative arrival decision record for target-coordinate verified capability-capital reproduction.",
+  "type": "object",
+  "required": [
+    "record_type",
+    "arrival_id",
+    "target_profile_id",
+    "final_decision",
+    "mandatory_subcertificates_status",
+    "mandatory_subcertificate_ids",
+    "endogenous_net_growth_interval",
+    "queue_margin",
+    "external_injection_share",
+    "unresolved_attribution_share",
+    "transfer_coverage",
+    "acceptance_thresholds",
+    "target_coordinate_statuses",
+    "target_defeaters",
+    "safety_control_status",
+    "transfer_status",
+    "evaluation_status",
+    "window_balance_status",
+    "operational_metrics"
+  ],
+  "properties": {
+    "record_type": { "const": "arrival_record" },
+    "arrival_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "target_profile_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "final_decision": { "$ref": "common.schema.json#/$defs/decision_status" },
+    "mandatory_subcertificates_status": { "$ref": "common.schema.json#/$defs/subcertificate_status" },
+    "mandatory_subcertificate_ids": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/non_empty_string" }
+    },
+    "endogenous_net_growth_interval": { "$ref": "common.schema.json#/$defs/interval" },
+    "queue_margin": { "$ref": "common.schema.json#/$defs/interval" },
+    "external_injection_share": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "unresolved_attribution_share": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "transfer_coverage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "acceptance_thresholds": { "$ref": "common.schema.json#/$defs/acceptance_thresholds" },
+    "target_coordinate_statuses": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/target_coordinate_result" }
+    },
+    "target_defeaters": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/target_defeater" }
+    },
+    "safety_control_status": { "$ref": "common.schema.json#/$defs/decision_status" },
+    "transfer_status": { "$ref": "common.schema.json#/$defs/decision_status" },
+    "evaluation_status": { "$ref": "common.schema.json#/$defs/decision_status" },
+    "window_balance_status": { "$ref": "common.schema.json#/$defs/decision_status" },
+    "operational_metrics": { "$ref": "common.schema.json#/$defs/operational_metrics" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/domain_witness.schema.json",
+  "title": "CAIT Domain Witness",
+  "description": "Machine-checkable witness for certificate composition predicates.",
+  "type": "object",
+  "required": ["record_type", "witness_id", "operation", "predicates", "status_effect"],
+  "properties": {
+    "record_type": { "const": "domain_witness" },
+    "witness_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "operation": {
+      "type": "string",
+      "enum": ["meet", "sequential_composition", "disjoint_sum", "positive_claim"]
+    },
+    "predicates": { "$ref": "common.schema.json#/$defs/domain_witness_flags" },
+    "status_effect": { "$ref": "common.schema.json#/$defs/status_effect" },
+    "supporting_records": { "$ref": "common.schema.json#/$defs/string_array" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,61 @@
+[project]
+name = "cait-certificate-schema"
+version = "0.1.0"
+description = "JSON Schemas and local validation tooling for CAIT-style certified AI R&D capability-capital records."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "K. Takahashi" }
+]
+keywords = [
+  "CAIT",
+  "JSON Schema",
+  "verified capability capital",
+  "certificate records",
+  "AI R&D validation"
+]
+dependencies = [
+  "jsonschema>=4.23.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0"
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.0.0"
+]
+
+[project.scripts]
+cait-validate = "cait_schema.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cait_schema"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"schemas/cait" = "cait_schema/schemas/cait"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/schemas",
+  "/examples",
+  "/tests",
+  "/README.md",
+  "/LICENSE",
+  "/NOTICE",
+  "/SECURITY.md",
+  "/CITATION.cff",
+  "/pyproject.toml"
+]

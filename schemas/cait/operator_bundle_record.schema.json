@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/operator_bundle_record.schema.json",
+  "title": "CAIT Operator Bundle Record",
+  "description": "Typed lower-bound operator bundle for a registered CAIT window.",
+  "type": "object",
+  "required": [
+    "record_type",
+    "bundle_id",
+    "window_id",
+    "endogenous_operator_ref",
+    "obsolescence_interval",
+    "external_injection_interval",
+    "typed_loss_interval",
+    "baseline_start",
+    "baseline_center",
+    "certificate_id"
+  ],
+  "properties": {
+    "record_type": { "const": "operator_bundle_record" },
+    "bundle_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "window_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "endogenous_operator_ref": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "obsolescence_interval": { "$ref": "common.schema.json#/$defs/interval" },
+    "external_injection_interval": { "$ref": "common.schema.json#/$defs/interval" },
+    "typed_loss_interval": { "$ref": "common.schema.json#/$defs/interval" },
+    "baseline_start": { "$ref": "common.schema.json#/$defs/interval" },
+    "baseline_center": { "$ref": "common.schema.json#/$defs/interval" },
+    "operating_region": { "$ref": "common.schema.json#/$defs/string_array" },
+    "certificate_id": { "$ref": "common.schema.json#/$defs/non_empty_string" }
+  },
+  "additionalProperties": false
+}

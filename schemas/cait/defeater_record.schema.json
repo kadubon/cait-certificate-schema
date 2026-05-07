@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/defeater_record.schema.json",
+  "title": "CAIT Defeater Record",
+  "description": "Record for blockers, downgrades, or rebuttals affecting CAIT positive claims.",
+  "type": "object",
+  "required": [
+    "record_type",
+    "defeater_id",
+    "severity",
+    "resolution_status",
+    "affected_scope",
+    "affected_target_coordinates",
+    "status_effect"
+  ],
+  "properties": {
+    "record_type": { "const": "defeater_record" },
+    "defeater_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "severity": { "$ref": "common.schema.json#/$defs/defeater_severity" },
+    "resolution_status": { "$ref": "common.schema.json#/$defs/resolution_status" },
+    "affected_scope": { "$ref": "common.schema.json#/$defs/string_array" },
+    "affected_target_coordinates": { "$ref": "common.schema.json#/$defs/string_array" },
+    "dependency_target": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "propagation_rule": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "resolution_rule": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "status_effect": { "$ref": "common.schema.json#/$defs/status_effect" }
+  },
+  "additionalProperties": false
+}

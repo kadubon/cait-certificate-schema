@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/evaluation_certificate.schema.json",
+  "title": "CAIT Evaluation Certificate",
+  "description": "Target evaluation boundary certificate with holdout, leakage, contamination, and elicitation context.",
+  "type": "object",
+  "required": [
+    "record_type",
+    "evaluation_certificate_id",
+    "evaluator_id",
+    "holdout_independence",
+    "contamination_status",
+    "leakage_budget",
+    "elicitation_envelope",
+    "capability_floor",
+    "dangerous_capability_ceiling",
+    "target_coordinate_statuses"
+  ],
+  "properties": {
+    "record_type": { "const": "evaluation_certificate" },
+    "evaluation_certificate_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "evaluator_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "holdout_independence": { "type": "boolean" },
+    "contamination_status": { "$ref": "common.schema.json#/$defs/decision_status" },
+    "leakage_budget": { "$ref": "common.schema.json#/$defs/interval" },
+    "elicitation_envelope": { "$ref": "common.schema.json#/$defs/string_array" },
+    "capability_floor": { "$ref": "common.schema.json#/$defs/interval" },
+    "dangerous_capability_ceiling": { "$ref": "common.schema.json#/$defs/interval" },
+    "target_coordinate_statuses": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/target_coordinate_result" }
+    },
+    "abstention_conditions": { "$ref": "common.schema.json#/$defs/string_array" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/token_record.schema.json",
+  "title": "CAIT Token Record",
+  "description": "Content-addressed capability token with lifecycle, lineage, evidence, and boundary context.",
+  "type": "object",
+  "required": [
+    "record_type",
+    "token_id",
+    "artifact_hash",
+    "lifecycle_status",
+    "positive_capital_effect",
+    "evidence_links",
+    "lineage_parents",
+    "dependency_links",
+    "resource_charges"
+  ],
+  "properties": {
+    "record_type": { "const": "token_record" },
+    "token_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "artifact_hash": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "lifecycle_status": { "$ref": "common.schema.json#/$defs/lifecycle_status" },
+    "positive_capital_effect": { "$ref": "common.schema.json#/$defs/status_effect" },
+    "evidence_links": { "$ref": "common.schema.json#/$defs/string_array" },
+    "lineage_parents": { "$ref": "common.schema.json#/$defs/string_array" },
+    "dependency_links": { "$ref": "common.schema.json#/$defs/string_array" },
+    "transfer_certificate_ids": { "$ref": "common.schema.json#/$defs/string_array" },
+    "evaluation_certificate_ids": { "$ref": "common.schema.json#/$defs/string_array" },
+    "safety_gate_status": { "$ref": "common.schema.json#/$defs/decision_status" },
+    "freshness": { "$ref": "common.schema.json#/$defs/decision_status" },
+    "resource_charges": { "$ref": "common.schema.json#/$defs/resource_usage" }
+  },
+  "additionalProperties": false
+}

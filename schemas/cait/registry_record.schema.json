@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/registry_record.schema.json",
+  "title": "CAIT Registry Record",
+  "description": "Declares coordinate, lifecycle, evidence, service, transfer, evaluation, and acceptance context.",
+  "type": "object",
+  "required": [
+    "record_type",
+    "registry_id",
+    "epoch_id",
+    "coordinate_dictionary",
+    "lifecycle_states",
+    "evidence_modes",
+    "acceptance_decision_rule"
+  ],
+  "properties": {
+    "record_type": { "const": "registry_record" },
+    "registry_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "epoch_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "coordinate_dictionary": { "$ref": "common.schema.json#/$defs/string_array" },
+    "admissible_transformations": { "$ref": "common.schema.json#/$defs/string_array" },
+    "lifecycle_states": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/lifecycle_status" },
+      "minItems": 1
+    },
+    "evidence_modes": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/evidence_mode" },
+      "minItems": 1
+    },
+    "external_input_boundary": { "$ref": "common.schema.json#/$defs/string_array" },
+    "evaluator_boundary": { "$ref": "common.schema.json#/$defs/string_array" },
+    "service_graph": { "$ref": "common.schema.json#/$defs/string_array" },
+    "transfer_boundary": { "$ref": "common.schema.json#/$defs/string_array" },
+    "safety_control_envelope": { "$ref": "common.schema.json#/$defs/string_array" },
+    "acceptance_decision_rule": { "$ref": "common.schema.json#/$defs/non_empty_string" }
+  },
+  "additionalProperties": false
+}

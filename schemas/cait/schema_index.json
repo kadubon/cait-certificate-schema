@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1.0",
+  "json_schema_draft": "2020-12",
+  "semantic_profile_id": "cait-lightweight-fail-closed-0.1.0",
+  "record_type_key": "record_type",
+  "schema_base_uri": "https://cait-schema.local/schemas/cait/",
+  "top_level_bundle": "cait.schema.json",
+  "semantic_rules_file": "semantic_rules.json",
+  "examples_directory": "examples",
+  "record_types": {
+    "registry_record": "registry_record.schema.json",
+    "certificate_record": "certificate_record.schema.json",
+    "domain_witness": "domain_witness.schema.json",
+    "token_record": "token_record.schema.json",
+    "operator_bundle_record": "operator_bundle_record.schema.json",
+    "defeater_record": "defeater_record.schema.json",
+    "evidence_budget_ledger": "evidence_budget_ledger.schema.json",
+    "assurance_case": "assurance_case.schema.json",
+    "transfer_certificate": "transfer_certificate.schema.json",
+    "evaluation_certificate": "evaluation_certificate.schema.json",
+    "controller_certificate": "controller_certificate.schema.json",
+    "window_balance_certificate": "window_balance_certificate.schema.json",
+    "arrival_record": "arrival_record.schema.json"
+  },
+  "core_enums": {
+    "lifecycle_status": ["candidate", "accepted", "conditional", "quarantined", "expired", "revoked"],
+    "evidence_mode": [
+      "deterministic_proof",
+      "replay_certificate",
+      "anytime_statistical_process",
+      "partial_identification_interval",
+      "expert_assurance_claim",
+      "registered_hybrid"
+    ],
+    "defeater_severity": ["none", "low", "medium", "high", "blocking"],
+    "decision_status": ["pass", "conditional", "fail"],
+    "target_coordinate_status": ["accepted", "conditional", "abstained_or_uncertified", "failed"],
+    "status_effect": ["full", "discounted_and_scoped", "zero_for_affected_scope", "bottom_for_affected_scope"]
+  }
+}

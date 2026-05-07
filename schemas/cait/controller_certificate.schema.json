@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/controller_certificate.schema.json",
+  "title": "CAIT Controller Certificate",
+  "description": "Service-feasibility and safety-control certificate.",
+  "type": "object",
+  "required": [
+    "record_type",
+    "controller_certificate_id",
+    "queue_margin",
+    "safety_control_status",
+    "service_graph",
+    "audit_supply_margin"
+  ],
+  "properties": {
+    "record_type": { "const": "controller_certificate" },
+    "controller_certificate_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "queue_margin": { "$ref": "common.schema.json#/$defs/interval" },
+    "safety_control_status": { "$ref": "common.schema.json#/$defs/decision_status" },
+    "service_graph": { "$ref": "common.schema.json#/$defs/string_array" },
+    "audit_supply_margin": { "$ref": "common.schema.json#/$defs/interval" },
+    "queue_age_limits": { "$ref": "common.schema.json#/$defs/string_array" },
+    "lower_service_curves": { "$ref": "common.schema.json#/$defs/string_array" },
+    "safe_set": { "$ref": "common.schema.json#/$defs/string_array" },
+    "disturbance_set": { "$ref": "common.schema.json#/$defs/string_array" },
+    "safety_override": { "$ref": "common.schema.json#/$defs/decision_status" }
+  },
+  "additionalProperties": false
+}

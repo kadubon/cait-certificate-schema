@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this schema package, please cite both this repository and the related CAIT manuscript."
+title: "CAIT Certificate Schema"
+authors:
+  - family-names: "Takahashi"
+    given-names: "K."
+license: "Apache-2.0"
+repository-code: "https://github.com/kadubon/cait-certificate-schema"
+version: "0.1.0"
+date-released: "2026-05-07"
+references:
+  - type: "article"
+    title: "Certified Autocatalytic Intelligence Theory: Net-Growth Certificate Algebra for Verified Capability Capital"
+    authors:
+      - family-names: "Takahashi"
+        given-names: "K."
+    year: 2026
+    doi: "10.5281/zenodo.20061296"
+    url: "https://doi.org/10.5281/zenodo.20061296"

@@ -1,0 +1,19 @@
+{
+  "record_type": "certificate_record",
+  "certificate_id": "cert_invalid_missing_witness",
+  "lifecycle_status": "accepted",
+  "positive_capital_effect": "full",
+  "interval": {
+    "lower": 1.0,
+    "upper": 1.2,
+    "unit": "verified_capability_tokens"
+  },
+  "evidence_mode": "registered_hybrid",
+  "scope": [
+    "synthetic_code_repair"
+  ],
+  "dependency_links": [],
+  "evidence_links": [],
+  "claimed_strengthening": true,
+  "domain_witness_required": true
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/evidence_budget_ledger.schema.json",
+  "title": "CAIT Evidence Budget Ledger",
+  "description": "Evidence mode, alpha, e-process, replay, and dominance-rule accounting.",
+  "type": "object",
+  "required": ["record_type", "ledger_id", "evidence_modes", "alpha_spent", "dominance_rules"],
+  "properties": {
+    "record_type": { "const": "evidence_budget_ledger" },
+    "ledger_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "evidence_modes": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/evidence_mode" },
+      "minItems": 1
+    },
+    "alpha_spent": {
+      "type": "number",
+      "minimum": 0
+    },
+    "e_process_budget": {
+      "type": "number",
+      "minimum": 0
+    },
+    "stopping_rule": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "dominance_rules": { "$ref": "common.schema.json#/$defs/string_array" }
+  },
+  "additionalProperties": false
+}

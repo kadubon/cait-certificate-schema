@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/assurance_case.schema.json",
+  "title": "CAIT Assurance Case",
+  "description": "Minimal assurance-case DAG for CAIT certificate support, rebuttal, and residual risk.",
+  "type": "object",
+  "required": ["record_type", "assurance_case_id", "nodes", "edges", "unresolved_defeaters"],
+  "properties": {
+    "record_type": { "const": "assurance_case" },
+    "assurance_case_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["node_id", "node_type"],
+        "properties": {
+          "node_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+          "node_type": {
+            "type": "string",
+            "enum": ["claim", "context", "assumption", "evidence", "estimator", "monitor", "gate", "rebuttal", "residual_risk", "decision"]
+          },
+          "description": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target", "edge_type"],
+        "properties": {
+          "source": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+          "target": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+          "edge_type": {
+            "type": "string",
+            "enum": ["supports", "refutes", "conditions", "updates", "invalidates", "scopes", "depends_on"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "unresolved_defeaters": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/target_defeater" }
+    }
+  },
+  "additionalProperties": false
+}

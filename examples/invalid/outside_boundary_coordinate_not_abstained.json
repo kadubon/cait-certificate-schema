@@ -1,0 +1,35 @@
+{
+  "record_type": "evaluation_certificate",
+  "evaluation_certificate_id": "eval_invalid_boundary",
+  "evaluator_id": "synthetic_holdout_evaluator",
+  "holdout_independence": true,
+  "contamination_status": "pass",
+  "leakage_budget": {
+    "lower": 0.0,
+    "upper": 0.01,
+    "unit": "fraction"
+  },
+  "elicitation_envelope": [
+    "bounded synthetic tasks"
+  ],
+  "capability_floor": {
+    "lower": 0.75,
+    "upper": 0.95,
+    "unit": "success_fraction"
+  },
+  "dangerous_capability_ceiling": {
+    "lower": 0.0,
+    "upper": 0.1,
+    "unit": "risk_score"
+  },
+  "target_coordinate_statuses": [
+    {
+      "coordinate": "synthetic_unregistered_target",
+      "status": "accepted",
+      "within_boundary": false
+    }
+  ],
+  "abstention_conditions": [
+    "outside evaluator boundary"
+  ]
+}

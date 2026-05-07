@@ -1,0 +1,50 @@
+{
+  "record_type": "arrival_record",
+  "arrival_id": "arr_invalid_missing_subcert_links",
+  "target_profile_id": "synthetic_target_profile",
+  "final_decision": "pass",
+  "mandatory_subcertificates_status": "accepted",
+  "mandatory_subcertificate_ids": [],
+  "endogenous_net_growth_interval": {
+    "lower": 1.0,
+    "upper": 1.5,
+    "unit": "verified_capability_tokens_per_window"
+  },
+  "queue_margin": {
+    "lower": 0.2,
+    "upper": 0.8,
+    "unit": "verified_capability_tokens_per_day"
+  },
+  "external_injection_share": 0.1,
+  "unresolved_attribution_share": 0.0,
+  "transfer_coverage": 1.0,
+  "acceptance_thresholds": {
+    "max_external_injection_share": 0.2,
+    "max_unresolved_attribution_share": 0.05,
+    "min_transfer_coverage": 0.9,
+    "max_residual_risk_upper": 0.1
+  },
+  "target_coordinate_statuses": [
+    {
+      "coordinate": "synthetic_code_repair",
+      "status": "accepted",
+      "within_boundary": true
+    }
+  ],
+  "target_defeaters": [],
+  "safety_control_status": "pass",
+  "transfer_status": "pass",
+  "evaluation_status": "pass",
+  "window_balance_status": "pass",
+  "operational_metrics": {
+    "external_injection_share": 0.1,
+    "unresolved_attribution_share": 0.0,
+    "transfer_coverage": 1.0,
+    "audit_freshness": "pass",
+    "residual_risk": {
+      "lower": 0.0,
+      "upper": 0.05,
+      "unit": "risk_score"
+    }
+  }
+}

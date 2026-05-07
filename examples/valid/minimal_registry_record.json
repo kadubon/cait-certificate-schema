@@ -1,0 +1,44 @@
+{
+  "record_type": "registry_record",
+  "registry_id": "reg_synthetic_001",
+  "epoch_id": "epoch_demo_001",
+  "coordinate_dictionary": [
+    "synthetic_code_repair",
+    "synthetic_replay_audit"
+  ],
+  "admissible_transformations": [
+    "positive_diagonal_rescaling"
+  ],
+  "lifecycle_states": [
+    "candidate",
+    "accepted",
+    "conditional",
+    "quarantined",
+    "expired",
+    "revoked"
+  ],
+  "evidence_modes": [
+    "deterministic_proof",
+    "replay_certificate",
+    "anytime_statistical_process",
+    "partial_identification_interval",
+    "expert_assurance_claim",
+    "registered_hybrid"
+  ],
+  "external_input_boundary": [
+    "synthetic_registered_inputs_only"
+  ],
+  "evaluator_boundary": [
+    "synthetic_holdout_evaluator"
+  ],
+  "service_graph": [
+    "generation_to_verification_to_registry"
+  ],
+  "transfer_boundary": [
+    "synthetic_source_to_target"
+  ],
+  "safety_control_envelope": [
+    "no_external_actions"
+  ],
+  "acceptance_decision_rule": "accepted mandatory subcertificates, positive endogenous net growth, no unresolved high target defeaters"
+}

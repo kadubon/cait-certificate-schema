@@ -1,0 +1,27 @@
+{
+  "record_type": "transfer_certificate",
+  "transfer_certificate_id": "transfer_synthetic_001",
+  "source_coordinates": [
+    "synthetic_code_repair_source"
+  ],
+  "target_coordinates": [
+    "synthetic_code_repair"
+  ],
+  "accepted_target_coordinates": [
+    "synthetic_code_repair"
+  ],
+  "causal_abstraction_map": [
+    "source_repair_to_target_repair"
+  ],
+  "transport_assumptions": [
+    "synthetic stable interface"
+  ],
+  "semantic_persistence_interval": {
+    "lower": 0.8,
+    "upper": 1.0,
+    "unit": "fraction",
+    "confidence": 0.9
+  },
+  "risk_control_rule": "abstain outside synthetic target boundary",
+  "transfer_status": "pass"
+}

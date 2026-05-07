@@ -1,0 +1,19 @@
+{
+  "record_type": "certificate_record",
+  "certificate_id": "cert_invalid_full_conditional",
+  "lifecycle_status": "conditional",
+  "positive_capital_effect": "full",
+  "interval": {
+    "lower": 0.5,
+    "upper": 0.8,
+    "unit": "verified_capability_tokens"
+  },
+  "evidence_mode": "replay_certificate",
+  "scope": [
+    "synthetic_code_repair"
+  ],
+  "dependency_links": [],
+  "evidence_links": [],
+  "claimed_strengthening": false,
+  "domain_witness_required": false
+}

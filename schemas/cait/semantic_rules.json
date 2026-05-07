@@ -1,0 +1,163 @@
+{
+  "schema_version": "0.1.0",
+  "description": "Language-neutral semantic validation rules for CAIT-style records. JSON Schema validates shape; these rules encode lightweight fail-closed checks.",
+  "rules": [
+    {
+      "rule_id": "json_schema_structural_validation",
+      "severity": "error",
+      "record_types": ["*"],
+      "primary_paths": ["$"],
+      "portable_logic": "selected_json_schema(record).valid == true",
+      "description": "The record must satisfy its selected JSON Schema before it can support a CAIT-style claim."
+    },
+    {
+      "rule_id": "interval_lower_leq_upper",
+      "severity": "error",
+      "record_types": ["*"],
+      "primary_paths": ["$..[?(@.lower && @.upper)]"],
+      "portable_logic": "for each interval object: lower <= upper",
+      "description": "Every interval object must satisfy lower <= upper."
+    },
+    {
+      "rule_id": "passing_arrival_requires_positive_endogenous_net_growth",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": ["$.final_decision", "$.endogenous_net_growth_interval.lower"],
+      "portable_logic": "$.final_decision == \"pass\" => $.endogenous_net_growth_interval.lower > 0",
+      "description": "An arrival_record with final_decision = pass must have endogenous_net_growth_interval.lower > 0."
+    },
+    {
+      "rule_id": "passing_arrival_requires_positive_queue_margin",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": ["$.final_decision", "$.queue_margin.lower"],
+      "portable_logic": "$.final_decision == \"pass\" => $.queue_margin.lower > 0",
+      "description": "An arrival_record with final_decision = pass must have queue_margin.lower > 0."
+    },
+    {
+      "rule_id": "passing_arrival_blocks_unresolved_high_defeaters",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": ["$.final_decision", "$.target_defeaters[*].severity", "$.target_defeaters[*].resolution_status"],
+      "portable_logic": "$.final_decision == \"pass\" => no target_defeater has severity in {high, blocking} and resolution_status == unresolved",
+      "description": "An arrival_record with final_decision = pass must not contain unresolved high or blocking target defeaters."
+    },
+    {
+      "rule_id": "passing_arrival_requires_accepted_mandatory_subcertificates",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": ["$.final_decision", "$.mandatory_subcertificates_status"],
+      "portable_logic": "$.final_decision == \"pass\" => $.mandatory_subcertificates_status == \"accepted\"",
+      "description": "An arrival_record with final_decision = pass must have mandatory_subcertificates_status = accepted."
+    },
+    {
+      "rule_id": "passing_arrival_requires_mandatory_subcertificate_links",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": ["$.final_decision", "$.mandatory_subcertificate_ids"],
+      "portable_logic": "$.final_decision == \"pass\" => length($.mandatory_subcertificate_ids) > 0",
+      "description": "An arrival_record with final_decision = pass must list the mandatory subcertificate IDs it depends on."
+    },
+    {
+      "rule_id": "passing_arrival_requires_passed_boundary_statuses",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": [
+        "$.final_decision",
+        "$.safety_control_status",
+        "$.transfer_status",
+        "$.evaluation_status",
+        "$.window_balance_status"
+      ],
+      "portable_logic": "$.final_decision == \"pass\" => safety_control_status, transfer_status, evaluation_status, and window_balance_status are all \"pass\"",
+      "description": "An arrival_record with final_decision = pass must have safety_control_status, transfer_status, evaluation_status, and window_balance_status all equal to pass."
+    },
+    {
+      "rule_id": "passing_arrival_respects_external_injection_threshold",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": ["$.final_decision", "$.external_injection_share", "$.acceptance_thresholds.max_external_injection_share"],
+      "portable_logic": "$.final_decision == \"pass\" => $.external_injection_share <= $.acceptance_thresholds.max_external_injection_share",
+      "description": "An arrival_record with final_decision = pass must keep external_injection_share at or below its registered threshold."
+    },
+    {
+      "rule_id": "passing_arrival_respects_unresolved_attribution_threshold",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": ["$.final_decision", "$.unresolved_attribution_share", "$.acceptance_thresholds.max_unresolved_attribution_share"],
+      "portable_logic": "$.final_decision == \"pass\" => $.unresolved_attribution_share <= $.acceptance_thresholds.max_unresolved_attribution_share",
+      "description": "An arrival_record with final_decision = pass must keep unresolved_attribution_share at or below its registered threshold."
+    },
+    {
+      "rule_id": "passing_arrival_respects_transfer_coverage_threshold",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": ["$.final_decision", "$.transfer_coverage", "$.acceptance_thresholds.min_transfer_coverage"],
+      "portable_logic": "$.final_decision == \"pass\" => $.transfer_coverage >= $.acceptance_thresholds.min_transfer_coverage",
+      "description": "An arrival_record with final_decision = pass must meet or exceed its registered transfer coverage threshold."
+    },
+    {
+      "rule_id": "passing_arrival_requires_fresh_audit",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": ["$.final_decision", "$.operational_metrics.audit_freshness"],
+      "portable_logic": "$.final_decision == \"pass\" => $.operational_metrics.audit_freshness == \"pass\"",
+      "description": "An arrival_record with final_decision = pass must have operational_metrics.audit_freshness = pass."
+    },
+    {
+      "rule_id": "passing_arrival_respects_residual_risk_threshold",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": ["$.final_decision", "$.operational_metrics.residual_risk.upper", "$.acceptance_thresholds.max_residual_risk_upper"],
+      "portable_logic": "$.final_decision == \"pass\" => $.operational_metrics.residual_risk.upper <= $.acceptance_thresholds.max_residual_risk_upper",
+      "description": "An arrival_record with final_decision = pass must keep operational_metrics.residual_risk.upper at or below its registered threshold."
+    },
+    {
+      "rule_id": "arrival_operational_metrics_match_top_level_shares",
+      "severity": "error",
+      "record_types": ["arrival_record"],
+      "primary_paths": [
+        "$.external_injection_share",
+        "$.unresolved_attribution_share",
+        "$.transfer_coverage",
+        "$.operational_metrics.external_injection_share",
+        "$.operational_metrics.unresolved_attribution_share",
+        "$.operational_metrics.transfer_coverage"
+      ],
+      "portable_logic": "top-level external_injection_share, unresolved_attribution_share, and transfer_coverage must equal the corresponding operational_metrics values when both are present",
+      "description": "An arrival_record must keep top-level attribution/coverage shares consistent with operational_metrics."
+    },
+    {
+      "rule_id": "nonaccepted_lifecycle_cannot_claim_full_capital",
+      "severity": "error",
+      "record_types": ["certificate_record", "token_record"],
+      "primary_paths": ["$.lifecycle_status", "$.positive_capital_effect"],
+      "portable_logic": "$.positive_capital_effect == \"full\" => $.lifecycle_status == \"accepted\"",
+      "description": "Records with any lifecycle_status other than accepted cannot claim positive_capital_effect = full. Conditional records must use discounted_and_scoped when they contribute positive capital."
+    },
+    {
+      "rule_id": "evidence_strengthening_requires_witness",
+      "severity": "error",
+      "record_types": ["certificate_record"],
+      "primary_paths": ["$.claimed_strengthening", "$.strengthening_witness"],
+      "portable_logic": "$.claimed_strengthening == true => strengthening_witness is present and non-empty",
+      "description": "A certificate_record with claimed_strengthening = true must provide strengthening_witness."
+    },
+    {
+      "rule_id": "positive_claim_requires_domain_witness",
+      "severity": "error",
+      "record_types": ["certificate_record"],
+      "primary_paths": ["$.domain_witness_required", "$.positive_capital_effect", "$.domain_witness"],
+      "portable_logic": "$.domain_witness_required == true and positive_capital_effect in {full, discounted_and_scoped} => every required domain_witness predicate is true",
+      "description": "A positive certificate claim with domain_witness_required = true must provide a domain_witness whose required predicates are all true."
+    },
+    {
+      "rule_id": "outside_boundary_coordinates_must_abstain",
+      "severity": "error",
+      "record_types": ["arrival_record", "evaluation_certificate"],
+      "primary_paths": ["$.target_coordinate_statuses[*].within_boundary", "$.target_coordinate_statuses[*].status"],
+      "portable_logic": "for each target_coordinate_status: within_boundary == false => status == \"abstained_or_uncertified\"",
+      "description": "A target coordinate with within_boundary = false must use status = abstained_or_uncertified."
+    }
+  ]
+}

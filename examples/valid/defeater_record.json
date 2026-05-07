@@ -1,0 +1,16 @@
+{
+  "record_type": "defeater_record",
+  "defeater_id": "def_synthetic_low_001",
+  "severity": "low",
+  "resolution_status": "resolved",
+  "affected_scope": [
+    "synthetic_code_repair"
+  ],
+  "affected_target_coordinates": [
+    "synthetic_code_repair"
+  ],
+  "dependency_target": "tok_synthetic_001",
+  "propagation_rule": "descendants_only",
+  "resolution_rule": "accepted replay evidence",
+  "status_effect": "zero_for_affected_scope"
+}

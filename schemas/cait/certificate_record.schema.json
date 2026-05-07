@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/certificate_record.schema.json",
+  "title": "CAIT Certificate Record",
+  "description": "A lower-bound certificate record with lifecycle, evidence, dependency, and defeater context.",
+  "type": "object",
+  "required": [
+    "record_type",
+    "certificate_id",
+    "lifecycle_status",
+    "positive_capital_effect",
+    "interval",
+    "evidence_mode",
+    "scope",
+    "dependency_links",
+    "evidence_links",
+    "claimed_strengthening",
+    "domain_witness_required"
+  ],
+  "properties": {
+    "record_type": { "const": "certificate_record" },
+    "certificate_id": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "lifecycle_status": { "$ref": "common.schema.json#/$defs/lifecycle_status" },
+    "positive_capital_effect": { "$ref": "common.schema.json#/$defs/status_effect" },
+    "interval": { "$ref": "common.schema.json#/$defs/interval" },
+    "evidence_mode": { "$ref": "common.schema.json#/$defs/evidence_mode" },
+    "scope": { "$ref": "common.schema.json#/$defs/string_array" },
+    "dependency_links": { "$ref": "common.schema.json#/$defs/string_array" },
+    "evidence_links": { "$ref": "common.schema.json#/$defs/string_array" },
+    "defeaters": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/target_defeater" },
+      "default": []
+    },
+    "freshness": { "$ref": "common.schema.json#/$defs/decision_status" },
+    "provenance_commitments": { "$ref": "common.schema.json#/$defs/string_array" },
+    "claimed_strengthening": { "type": "boolean" },
+    "strengthening_witness": { "$ref": "common.schema.json#/$defs/non_empty_string" },
+    "domain_witness_required": { "type": "boolean" },
+    "domain_witness": { "$ref": "common.schema.json#/$defs/domain_witness_flags" }
+  },
+  "additionalProperties": false
+}

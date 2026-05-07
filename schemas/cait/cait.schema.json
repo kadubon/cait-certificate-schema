@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/cait/cait.schema.json",
+  "title": "CAIT Schema Bundle",
+  "description": "Top-level schema bundle for CAIT-style records.",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "registry_record.schema.json" },
+    { "$ref": "certificate_record.schema.json" },
+    { "$ref": "domain_witness.schema.json" },
+    { "$ref": "token_record.schema.json" },
+    { "$ref": "operator_bundle_record.schema.json" },
+    { "$ref": "defeater_record.schema.json" },
+    { "$ref": "evidence_budget_ledger.schema.json" },
+    { "$ref": "assurance_case.schema.json" },
+    { "$ref": "transfer_certificate.schema.json" },
+    { "$ref": "evaluation_certificate.schema.json" },
+    { "$ref": "controller_certificate.schema.json" },
+    { "$ref": "window_balance_certificate.schema.json" },
+    { "$ref": "arrival_record.schema.json" }
+  ]
+}
