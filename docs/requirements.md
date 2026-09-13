@@ -4,7 +4,7 @@ Preflight: clean HEAD `8ef4bc1ea272751804655a6e056467837ff35670`, source version
 no tags/Releases/open PRs or public PyPI project. Existing baseline: 14 tests passed.
 No pre-existing CI, coverage or mutation gate was found. Main has no branch-protection/rulesets.
 The user supplied the pending PyPI publisher identity: owner/repository `kadubon/cait-certificate-schema`,
-workflow `workflow.yml`, environment `pypi`. Actual OIDC publication remains a separate gate.
+workflow `workflow.yml`, environment `pypi`. Actual OIDC and public-index results are recorded in [release evidence](release.md).
 
 | Scope | Existing / added code | Evidence |
 | --- | --- | --- |
