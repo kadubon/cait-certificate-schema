@@ -4,6 +4,13 @@ JSON Schemas for CAIT-style records: certificates, tokens, defeaters, transfer/e
 Deterministic local validation checks record shape plus lightweight fail-closed semantics.
 This is not an AGI detector, model evaluator, deployment authorization system, or safety guarantee.
 
+Version 0.2.0 additionally provides an opt-in **experimental finite accounting kernel**:
+`cait-analyze example interchange` runs source-bound replay, exact balances, conditional
+reproduction witnesses, an independent report checker and pinned released VEK/CCR adapters.
+Read [accounting semantics](docs/accounting.md), [CLI/API](docs/cli.md),
+[mathematical boundaries](docs/reproduction.md) and [release evidence](docs/release.md).
+The established schemas and `cait-validate` retain their original meanings.
+
 ## Start Here
 
 If you are new to the project, read these files in order:
@@ -59,10 +66,10 @@ The schemas support machine-readable records. They do not certify AGI, ASI, depl
 
 ## Limitations
 
-- This OSS is JSON Schema plus lightweight local semantic validation only.
+- The legacy schema/validator surface provides JSON Schema plus lightweight local semantic validation.
 - JSON Schema validates record shape, not scientific truth.
 - The validator performs lightweight local checks only.
-- It does not perform scientific truth validation, causal inference, proof checking, replay, queue simulation, AGI/ASI detection, safety guarantees, or deployment approval.
+- The legacy validator does not replay source evidence. The new opt-in kernel replays finite declared histories and checks exact mathematical witnesses; neither surface establishes scientific truth, causal inference, AGI/ASI, safety guarantees or deployment approval.
 - It is not a frontier model evaluator, risk-governance process, autonomous agent system, or complete CAIT implementation.
 - Users must add registry-specific thresholds, evidence rules, evaluation boundaries, and policy semantics for their own setting.
 - The included thresholds and examples are synthetic and illustrative.

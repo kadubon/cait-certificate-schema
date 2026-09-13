@@ -1,0 +1,717 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/accounting/v1/report.schema.json",
+  "title": "CAIT computation v1 report",
+  "type": "object",
+  "properties": {
+    "record_type": {
+      "const": "cait_growth_window_report_v1"
+    },
+    "schema_version": {
+      "const": "1"
+    },
+    "producer_version": {
+      "const": "0.2.0"
+    },
+    "algorithm_version": {
+      "const": "finite-accounting-1"
+    },
+    "input_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "registration_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "scope": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+    },
+    "episode": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+    },
+    "study": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+    },
+    "window": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "cutoff": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "unit": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "endpoints": {
+          "const": "[start,end)"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "cutoff",
+        "unit",
+        "endpoints"
+      ],
+      "additionalProperties": false
+    },
+    "evidence_basis": {
+      "enum": [
+        "synthetic",
+        "declared-record"
+      ]
+    },
+    "completeness": {
+      "enum": [
+        "declared_complete",
+        "incomplete"
+      ]
+    },
+    "layers": {
+      "type": "object",
+      "properties": {
+        "structural_integrity": {
+          "const": "checked"
+        },
+        "authentication": {
+          "const": "unestablished"
+        },
+        "accounting": {
+          "enum": [
+            "consistent",
+            "incomplete"
+          ]
+        },
+        "mathematics": {
+          "const": "conditional"
+        },
+        "statistical_coverage": {
+          "type": "null"
+        },
+        "causal_attribution": {
+          "type": "null"
+        },
+        "execution_authority": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "structural_integrity",
+        "authentication",
+        "accounting",
+        "mathematics",
+        "statistical_coverage",
+        "causal_attribution",
+        "execution_authority"
+      ],
+      "additionalProperties": false
+    },
+    "uncertainty": {
+      "const": "exact per joint scenario; extrema are a conservative outer projection"
+    },
+    "balances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "scenario": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "arm": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "coordinate": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "unit": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "meaning": {
+            "enum": [
+              "asset_stock",
+              "service_outcome",
+              "coverage"
+            ]
+          },
+          "opening": {
+            "type": "string",
+            "maxLength": 81,
+            "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+          },
+          "closing": {
+            "type": "string",
+            "maxLength": 81,
+            "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+          },
+          "endogenous": {
+            "type": "string",
+            "maxLength": 81,
+            "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+          },
+          "external": {
+            "type": "string",
+            "maxLength": 81,
+            "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+          },
+          "unresolved": {
+            "type": "string",
+            "maxLength": 81,
+            "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+          },
+          "losses": {
+            "type": "string",
+            "maxLength": 81,
+            "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+          },
+          "service": {
+            "type": "string",
+            "maxLength": 81,
+            "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+          },
+          "gross": {
+            "type": "string",
+            "maxLength": 81,
+            "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+          },
+          "costs": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 81,
+              "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+            },
+            "maxProperties": 8
+          },
+          "valued_cost": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "declared_net": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "external_share": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "unresolved_share": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "scenario",
+          "arm",
+          "coordinate",
+          "unit",
+          "meaning",
+          "opening",
+          "closing",
+          "endogenous",
+          "external",
+          "unresolved",
+          "losses",
+          "service",
+          "gross",
+          "costs",
+          "valued_cost",
+          "declared_net",
+          "external_share",
+          "unresolved_share"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 512,
+      "minItems": 0
+    },
+    "bounds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "arm": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "coordinate": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "lower": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "upper": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "enum": [
+              "declared_finite_bound",
+              "unknown"
+            ]
+          }
+        },
+        "required": [
+          "arm",
+          "coordinate",
+          "lower",
+          "upper",
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 64,
+      "minItems": 0
+    },
+    "traces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "scenario": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "journal": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "time": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "arm": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "coordinate": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "term": {
+                  "enum": [
+                    "initial",
+                    "endogenous",
+                    "external",
+                    "unresolved",
+                    "losses",
+                    "service"
+                  ]
+                },
+                "quantity": {
+                  "type": "string",
+                  "maxLength": 81,
+                  "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+                },
+                "source": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "time",
+                "arm",
+                "coordinate",
+                "term",
+                "quantity",
+                "source"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 4096,
+            "minItems": 0
+          },
+          "costs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "time": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "arm": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "unit": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "stage": {
+                  "enum": [
+                    "formation",
+                    "execution",
+                    "transfer",
+                    "validation",
+                    "refresh",
+                    "maintenance",
+                    "repair"
+                  ]
+                },
+                "cost_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "quantity": {
+                  "type": "string",
+                  "maxLength": 81,
+                  "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+                }
+              },
+              "required": [
+                "time",
+                "arm",
+                "unit",
+                "stage",
+                "cost_id",
+                "quantity"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 4096,
+            "minItems": 0
+          },
+          "uses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "event": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "arm": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "receiver": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "outcome": {
+                  "enum": [
+                    "success",
+                    "failure",
+                    "rejection",
+                    "timeout",
+                    "pending",
+                    "censored"
+                  ]
+                },
+                "qualified": {
+                  "type": "boolean"
+                },
+                "time": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                }
+              },
+              "required": [
+                "event",
+                "arm",
+                "receiver",
+                "outcome",
+                "qualified",
+                "time"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 256,
+            "minItems": 0
+          },
+          "residuals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 4096,
+            "minItems": 0
+          },
+          "resource_checks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "unit": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "consumed": {
+                  "type": "string",
+                  "maxLength": 81,
+                  "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+                },
+                "limit": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 81,
+                      "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "within_declared_limit",
+                    "exceeded",
+                    "unknown"
+                  ]
+                }
+              },
+              "required": [
+                "unit",
+                "consumed",
+                "limit",
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 8,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "scenario",
+          "journal",
+          "costs",
+          "uses",
+          "residuals",
+          "resource_checks"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 8,
+      "minItems": 0
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "record_type": {
+            "const": "cait_reproduction_check_v1"
+          },
+          "model_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "classification": {
+            "enum": [
+              "supercritical",
+              "subcritical",
+              "unknown"
+            ]
+          },
+          "kind": {
+            "enum": [
+              "expected_offspring",
+              "uniform_pathwise",
+              "time_varying",
+              "local_jacobian"
+            ]
+          },
+          "interpretation": {
+            "enum": [
+              "births_only",
+              "total_next_state"
+            ]
+          },
+          "lower": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "upper": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "uniform_pathwise_factor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "residuals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 256,
+            "minItems": 0
+          },
+          "basis": {
+            "const": "declared mathematical premise"
+          },
+          "empirical_growth": {
+            "type": "null"
+          },
+          "authority": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "record_type",
+          "model_digest",
+          "classification",
+          "kind",
+          "interpretation",
+          "lower",
+          "upper",
+          "uniform_pathwise_factor",
+          "residuals",
+          "basis",
+          "empirical_growth",
+          "authority"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 8,
+      "minItems": 0
+    },
+    "residuals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 4096,
+      "minItems": 0
+    },
+    "arrival_verdict": {
+      "type": "null"
+    },
+    "non_claims": {
+      "const": [
+        "No empirical acceleration experiment",
+        "No causal endogenous reproduction",
+        "No AGI/ASI or infinite growth",
+        "No execution authority",
+        "Hashes do not authenticate sources"
+      ]
+    }
+  },
+  "required": [
+    "record_type",
+    "schema_version",
+    "producer_version",
+    "algorithm_version",
+    "input_digest",
+    "registration_digest",
+    "scope",
+    "episode",
+    "study",
+    "window",
+    "evidence_basis",
+    "completeness",
+    "layers",
+    "uncertainty",
+    "balances",
+    "bounds",
+    "traces",
+    "models",
+    "residuals",
+    "arrival_verdict",
+    "non_claims"
+  ],
+  "additionalProperties": false
+}

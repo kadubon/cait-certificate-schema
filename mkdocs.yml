@@ -1,0 +1,12 @@
+site_name: CAIT Certificate Schema
+site_description: Declared finite accounting and conditional reproduction bounds
+nav:
+  - Overview: index.md
+  - Accounting: accounting.md
+  - Mathematical certificates: reproduction.md
+  - Interchange: interchange.md
+  - CLI and API: cli.md
+  - Generated schemas: generated_reference.md
+  - Requirements and checks: requirements.md
+  - Release procedure: release.md
+  - Release notes: release_notes.md

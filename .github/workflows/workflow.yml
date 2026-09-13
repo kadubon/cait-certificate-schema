@@ -1,0 +1,117 @@
+name: CAIT quality and publication
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.11', '3.12', '3.13', '3.14']
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff
+        with:
+          enable-cache: false
+      - run: uv sync --locked --python '${{ matrix.python }}' --dev
+      - run: uv run pytest --cov --cov-report=json:coverage.json
+      - run: uv run python scripts/check_coverage.py
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff
+        with:
+          enable-cache: false
+      - run: uv sync --locked --python 3.13 --dev
+      - run: uv run ruff format --check .
+      - run: uv run ruff check .
+      - run: uv run mypy
+      - run: uv run python scripts/check_source.py
+      - run: uv run python scripts/check_faults.py
+      - run: uv run pip-audit
+      - run: uv run mkdocs build --strict
+  build:
+    needs: [test, quality]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff
+        with:
+          enable-cache: false
+      - run: uv sync --locked --python 3.13 --dev
+      - run: uv build --no-sources
+      - run: uv run twine check dist/*.whl dist/*.tar.gz
+      - run: uv run python scripts/check_artifacts.py
+      - run: uv run python scripts/check_installed.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: dist
+          path: dist/*
+  installed:
+    needs: build
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: dist
+          path: dist
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff
+        with:
+          enable-cache: false
+      - run: uv run --no-project python scripts/check_installed.py
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build, installed]
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: dist
+          path: dist
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff
+        with:
+          enable-cache: false
+      - run: cd dist && sha256sum --check SHA256SUMS
+      - run: uv publish --trusted-publishing always dist/*.whl dist/*.tar.gz
+  release:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: dist
+          path: dist
+      - run: cd dist && sha256sum --check SHA256SUMS
+      - run: >-
+          gh release create "$GITHUB_REF_NAME" dist/* --verify-tag
+          --title 'CAIT 0.2.0: evidence-derived capability accounting and conditional reproduction bounds'
+          --notes-file docs/release_notes.md
+        env:
+          GH_TOKEN: ${{ github.token }}

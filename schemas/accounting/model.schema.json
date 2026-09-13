@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/accounting/v1/model.schema.json",
+  "title": "CAIT computation v1 model",
+  "type": "object",
+  "properties": {
+    "record_type": {
+      "const": "cait_reproduction_model_v1"
+    },
+    "scope": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+    },
+    "episode": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+    },
+    "contract": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+      },
+      "maxItems": 8,
+      "minItems": 1
+    },
+    "orientation": {
+      "const": "rows-child-columns-parent"
+    },
+    "kind": {
+      "enum": [
+        "expected_offspring",
+        "uniform_pathwise",
+        "time_varying",
+        "local_jacobian"
+      ]
+    },
+    "interpretation": {
+      "enum": [
+        "births_only",
+        "total_next_state"
+      ]
+    },
+    "exposure": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+    },
+    "time_basis": {
+      "enum": [
+        "generation",
+        "elapsed_time"
+      ]
+    },
+    "retention": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+    },
+    "external_boundary": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+    },
+    "valid_from": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "valid_until": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "evidence_basis": {
+      "enum": [
+        "declared-model",
+        "synthetic"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+      },
+      "maxItems": 16,
+      "minItems": 0
+    },
+    "family": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lower": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              "maxItems": 8,
+              "minItems": 1
+            },
+            "maxItems": 8,
+            "minItems": 1
+          },
+          "upper": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 81,
+                    "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+                  },
+                  "maxItems": 8,
+                  "minItems": 1
+                },
+                "maxItems": 8,
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "lower",
+          "upper"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 8,
+      "minItems": 1
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "lower_witness": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "vector": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              "maxItems": 8,
+              "minItems": 1
+            },
+            "bound": {
+              "type": "string",
+              "maxLength": 81,
+              "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+            },
+            "block": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000000
+              },
+              "maxItems": 8,
+              "minItems": 0
+            }
+          },
+          "required": [
+            "vector",
+            "bound",
+            "block"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "upper_witness": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "vector": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              "maxItems": 8,
+              "minItems": 1
+            },
+            "bound": {
+              "type": "string",
+              "maxLength": 81,
+              "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+            },
+            "block": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000000
+              },
+              "maxItems": 8,
+              "minItems": 0
+            }
+          },
+          "required": [
+            "vector",
+            "bound",
+            "block"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "iterations": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    }
+  },
+  "required": [
+    "record_type",
+    "scope",
+    "episode",
+    "contract",
+    "types",
+    "orientation",
+    "kind",
+    "interpretation",
+    "exposure",
+    "time_basis",
+    "retention",
+    "external_boundary",
+    "valid_from",
+    "valid_until",
+    "evidence_basis",
+    "sources",
+    "family",
+    "complete",
+    "lower_witness",
+    "upper_witness",
+    "iterations"
+  ],
+  "additionalProperties": false
+}

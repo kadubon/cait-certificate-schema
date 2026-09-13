@@ -1,0 +1,483 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/accounting/v1/bundle.schema.json",
+  "title": "CAIT computation v1 bundle",
+  "type": "object",
+  "properties": {
+    "record_type": {
+      "const": "cait_source_bundle_v1"
+    },
+    "contract": {
+      "type": "object",
+      "properties": {
+        "record_type": {
+          "const": "cait_computation_contract_v1"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "time_unit": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "start": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "cutoff": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "checkpoint_time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "basis": {
+          "enum": [
+            "synthetic",
+            "declared-record"
+          ]
+        },
+        "interpretation": {
+          "enum": [
+            "as_of",
+            "corrected"
+          ]
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "unit": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "meaning": {
+                "enum": [
+                  "asset_stock",
+                  "service_outcome",
+                  "coverage"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "unit",
+              "meaning"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 8,
+          "minItems": 1
+        },
+        "receivers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "context": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "task": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "evaluator": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "protocol": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "checks": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "maxItems": 16,
+                "minItems": 1
+              }
+            },
+            "required": [
+              "id",
+              "context",
+              "task",
+              "evaluator",
+              "protocol",
+              "checks"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 16,
+          "minItems": 1
+        },
+        "arms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 8,
+          "minItems": 1
+        },
+        "scenarios": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 8,
+          "minItems": 1
+        },
+        "opening": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "artifact": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "coordinate": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "arm": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "quantity": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "maxLength": 81,
+                  "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+                },
+                "maxProperties": 8
+              },
+              "expires": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000000
+              }
+            },
+            "required": [
+              "artifact",
+              "coordinate",
+              "arm",
+              "quantity",
+              "expires"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 64,
+          "minItems": 0
+        },
+        "streams": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "arm": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "checkpoint": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "first": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000000
+              },
+              "last": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000000
+              },
+              "terminal": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "id",
+              "arm",
+              "checkpoint",
+              "first",
+              "last",
+              "terminal"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 8,
+          "minItems": 1
+        },
+        "mandatory_events": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 256,
+          "minItems": 0
+        },
+        "mandatory_costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 256,
+          "minItems": 0
+        },
+        "negative_terms_complete": {
+          "type": "boolean"
+        },
+        "allocations": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 81,
+              "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+            },
+            "maxProperties": 8
+          },
+          "maxProperties": 256
+        },
+        "cost_units": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 8,
+          "minItems": 0
+        },
+        "resource_limits": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 81,
+              "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+            },
+            "maxProperties": 8
+          },
+          "maxProperties": 8
+        },
+        "valuation": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "target": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "rates": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "maxLength": 81,
+                  "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+                },
+                "maxProperties": 8
+              },
+              "maxProperties": 8
+            }
+          },
+          "required": [
+            "version",
+            "target",
+            "rates"
+          ],
+          "additionalProperties": false
+        },
+        "operation_budget": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "policy": {
+          "const": "disjoint-origin-v1:content-dedup:propagate-revocation:half-open"
+        }
+      },
+      "required": [
+        "record_type",
+        "scope",
+        "episode",
+        "study",
+        "time_unit",
+        "start",
+        "end",
+        "cutoff",
+        "checkpoint_time",
+        "basis",
+        "interpretation",
+        "coordinates",
+        "receivers",
+        "arms",
+        "scenarios",
+        "opening",
+        "streams",
+        "mandatory_events",
+        "mandatory_costs",
+        "negative_terms_complete",
+        "allocations",
+        "cost_units",
+        "resource_limits",
+        "valuation",
+        "operation_budget",
+        "policy"
+      ],
+      "additionalProperties": false
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 100000
+          }
+        },
+        "required": [
+          "sha256",
+          "content"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 256,
+      "minItems": 0
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 100000
+          }
+        },
+        "required": [
+          "sha256",
+          "content"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 256,
+      "minItems": 0
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 100000
+          }
+        },
+        "required": [
+          "sha256",
+          "content"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 8,
+      "minItems": 0
+    }
+  },
+  "required": [
+    "record_type",
+    "contract",
+    "events",
+    "evidence",
+    "models"
+  ],
+  "additionalProperties": false
+}
