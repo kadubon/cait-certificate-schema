@@ -3,7 +3,7 @@
 ## Registration and source identity
 
 `cait_computation_contract_v1` fixes scope, episode, study (including training/holdout),
-arms, checkpoint, half-open integer-clock window `[start,end)`, recorded cutoff, coordinates,
+arms, checkpoint, named time unit, half-open integer-clock window `[start,end)`, recorded cutoff, coordinates,
 units, receiver/context/task/evaluator/protocol checks, initial endowments, joint scenarios,
 stream ranges, mandatory event/cost IDs, negative-term completeness, resource limits,
 cost allocations and optional versioned valuation. Register these premises before evaluation.

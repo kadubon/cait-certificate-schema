@@ -42,6 +42,7 @@ CONTRACT = obj(
     scope=ID,
     episode=ID,
     study=ID,
+    time_unit=ID,
     start=TIME,
     end=TIME,
     cutoff=TIME,
@@ -254,7 +255,7 @@ SCHEMAS["report"] = obj(
     scope=ID,
     episode=ID,
     study=ID,
-    window=obj(start=TIME, end=TIME, cutoff=TIME, endpoints={"const": "[start,end)"}),
+    window=obj(start=TIME, end=TIME, cutoff=TIME, unit=ID, endpoints={"const": "[start,end)"}),
     evidence_basis=CONTRACT["properties"]["basis"],
     completeness=enum("declared_complete", "incomplete"),
     layers=obj(

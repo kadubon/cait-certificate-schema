@@ -29,6 +29,12 @@ def envelope(record: Json) -> Json:
 def unpack(item: Json, schema: str) -> Json:
     require(bytes_digest(item["content"]) == item["sha256"], "source_digest", "Source bytes changed")
     result = parse(item["content"])
+    require(
+        not (schema == "model" and result.get("family") == []),
+        "empty_model",
+        "Empty compatible model family",
+        "inconsistent",
+    )
     validate(result, schema)
     return result
 

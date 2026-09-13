@@ -17,8 +17,8 @@ bound for the full nonnegative matrix, with its subset explicitly retained in th
 
 For an upper witness w > 0 and 0 <= s < 1, `U w <= s w` bounds the induced weighted infinity
 norm by s, hence `rho(K) <= s`. Upper witnesses must cover every declared type. Missing upper
-envelopes cannot support subcritical classification. Empty families are invalid, lower > upper
-is inconsistent, and incomplete family enumeration or budget exhaustion returns unknown.
+envelopes cannot support subcritical classification. Empty families and lower > upper
+are inconsistent, and incomplete family enumeration or budget exhaustion returns unknown.
 
 These are sufficient witnesses. Reducible, zero, nonsymmetric, poorly scaled and threshold-one
 examples are covered. `propose_lower` enumerates bounded integer-vector candidates and rechecks

@@ -53,3 +53,7 @@ strict types, formatting/lint, schema checks, source/archive scans, dependency a
 documentation build passed. The unpublished wheel completed an external Python 3.13 install
 with all eight legacy examples and 11 new histories offline. These are local results, not
 public-PyPI installation evidence.
+
+The final time-unit/empty-model regression adds one test: 167 tests passed on Python 3.13,
+with 99.65% statement and 97.34% branch coverage on the new core. Final-head CI covers
+all four supported Python versions and the identical artifact across all three OSs.

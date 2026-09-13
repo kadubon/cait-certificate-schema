@@ -19,6 +19,10 @@
       "type": "string",
       "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
     },
+    "time_unit": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+    },
     "start": {
       "type": "integer",
       "minimum": 0,
@@ -367,6 +371,7 @@
     "scope",
     "episode",
     "study",
+    "time_unit",
     "start",
     "end",
     "cutoff",

@@ -54,6 +54,10 @@
           "minimum": 0,
           "maximum": 1000000
         },
+        "unit": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
         "endpoints": {
           "const": "[start,end)"
         }
@@ -62,6 +66,7 @@
         "start",
         "end",
         "cutoff",
+        "unit",
         "endpoints"
       ],
       "additionalProperties": false

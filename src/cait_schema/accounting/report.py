@@ -112,7 +112,13 @@ def assemble(p: Prepared, traces: list[Json], balances: list[Json], models: list
         "scope": c["scope"],
         "episode": c["episode"],
         "study": c["study"],
-        "window": {"start": c["start"], "end": c["end"], "cutoff": c["cutoff"], "endpoints": "[start,end)"},
+        "window": {
+            "start": c["start"],
+            "end": c["end"],
+            "cutoff": c["cutoff"],
+            "unit": c["time_unit"],
+            "endpoints": "[start,end)",
+        },
         "evidence_basis": c["basis"],
         "completeness": "declared_complete" if not p.missing else "incomplete",
         "layers": {

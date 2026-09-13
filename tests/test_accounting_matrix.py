@@ -159,6 +159,17 @@ def test_bounded_search():
     assert propose_lower(m, "4", 1)["status"] == "exhausted"
 
 
+def test_empty_compatible_family_is_inconsistent():
+    c, e, v, m = fixture_parts()
+    m[0]["family"] = []
+    with pytest.raises(AnalysisError) as error:
+        reproduction(m[0])
+    assert error.value.status == "inconsistent"
+    with pytest.raises(AnalysisError) as error:
+        prepare(seal(c, e, v, m))
+    assert error.value.status == "inconsistent"
+
+
 @settings(max_examples=30, deadline=None)
 @given(a=st.integers(2, 7), b=st.integers(0, 3))
 def test_matrix_power_oracle_and_weakening(a, b):

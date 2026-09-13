@@ -5,6 +5,7 @@
     "scope": "synthetic",
     "episode": "episode-1",
     "study": "holdout",
+    "time_unit": "registered-tick",
     "start": 0,
     "end": 10,
     "cutoff": 12,
@@ -78,7 +79,7 @@
         "checkpoint": "c39d75c5426988326e58c908d94a01be5b0bd0825be7ccabbc98aca0d0bb856b",
         "first": 1,
         "last": 4,
-        "terminal": "e910e618eb9804cf6e266629537e3bd5ea9ccd4ed89ed9b94f3890bb43681058"
+        "terminal": "6f1c5aa14f8308bc6c8674babc6efa3dd112f940f6aacd4b4b68153b32c516f2"
       }
     ],
     "mandatory_events": [
@@ -113,20 +114,20 @@
   },
   "events": [
     {
-      "sha256": "240748687b7e1ca150dde5fe02b236ee28934fd02853b9ebef9435134b0a6970",
-      "content": "{\"arm\":\"candidate\",\"contract\":\"431189647d374dbe1daf9b7151b1b10b4f85d34426a7313accd185d5d2a7ac61\",\"costs\":[],\"data\":{\"cost_id\":\"physical-1\",\"quantity\":{\"joint-a\":\"1\"},\"stage\":\"formation\",\"unit\":\"work-hour\"},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[],\"id\":\"cost-formation\",\"kind\":\"cost\",\"previous\":\"c39d75c5426988326e58c908d94a01be5b0bd0825be7ccabbc98aca0d0bb856b\",\"recorded\":0,\"scope\":\"synthetic\",\"sequence\":1,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":0}"
+      "sha256": "fd956acef7add2edc40e0c44ade7714831809deae43d95dd9474242f4887af0b",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"40950169cff38d87a2cfb85b685c0ce8bc2b81530f6677772cb0852a2df57e9b\",\"costs\":[],\"data\":{\"cost_id\":\"physical-1\",\"quantity\":{\"joint-a\":\"1\"},\"stage\":\"formation\",\"unit\":\"work-hour\"},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[],\"id\":\"cost-formation\",\"kind\":\"cost\",\"previous\":\"c39d75c5426988326e58c908d94a01be5b0bd0825be7ccabbc98aca0d0bb856b\",\"recorded\":0,\"scope\":\"synthetic\",\"sequence\":1,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":0}"
     },
     {
-      "sha256": "03ed265df086792a9c22171e9ed0f9b6f4acd4d4fe1b433bc161174ef60e7b42",
-      "content": "{\"arm\":\"candidate\",\"contract\":\"431189647d374dbe1daf9b7151b1b10b4f85d34426a7313accd185d5d2a7ac61\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"coordinate\":\"assets\",\"expires\":100,\"parent_shares\":{\"27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63\":\"1/2\",\"cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377\":\"1/2\"},\"parents\":[\"cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377\",\"27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63\"],\"quantity\":{\"joint-a\":\"5\"},\"shares\":{\"endogenous\":\"1\",\"external\":\"0\",\"unresolved\":\"0\"}},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[\"check-creation\"],\"id\":\"create-child\",\"kind\":\"create\",\"previous\":\"240748687b7e1ca150dde5fe02b236ee28934fd02853b9ebef9435134b0a6970\",\"recorded\":1,\"scope\":\"synthetic\",\"sequence\":2,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":1}"
+      "sha256": "7089c92239f88182e7232e28c8c4fad4810a286cdb89ff9c8a894e8da6d57686",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"40950169cff38d87a2cfb85b685c0ce8bc2b81530f6677772cb0852a2df57e9b\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"coordinate\":\"assets\",\"expires\":100,\"parent_shares\":{\"27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63\":\"1/2\",\"cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377\":\"1/2\"},\"parents\":[\"cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377\",\"27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63\"],\"quantity\":{\"joint-a\":\"5\"},\"shares\":{\"endogenous\":\"1\",\"external\":\"0\",\"unresolved\":\"0\"}},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[\"check-creation\"],\"id\":\"create-child\",\"kind\":\"create\",\"previous\":\"fd956acef7add2edc40e0c44ade7714831809deae43d95dd9474242f4887af0b\",\"recorded\":1,\"scope\":\"synthetic\",\"sequence\":2,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":1}"
     },
     {
-      "sha256": "172ff7fe911a2bdad52e9450f16126680f37d8bb068c4c52da900393c63bedd4",
-      "content": "{\"arm\":\"candidate\",\"contract\":\"431189647d374dbe1daf9b7151b1b10b4f85d34426a7313accd185d5d2a7ac61\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"context\":\"finite-task\",\"coordinate\":\"service\",\"evaluator\":\"evaluator-v1\",\"input\":\"48aed2374cea5f3bbbee1c8742439be758dcc1e999e0e3f0e03c1ee80e3565a0\",\"outcome\":\"success\",\"protocol\":\"holdout-v1\",\"quantity\":{\"joint-a\":\"1\"},\"receiver\":\"receiver-1\",\"task\":\"task-1\"},\"dependencies\":[\"create-child\"],\"episode\":\"episode-1\",\"evidence\":[\"check-creation\"],\"id\":\"reuse-child\",\"kind\":\"use\",\"previous\":\"03ed265df086792a9c22171e9ed0f9b6f4acd4d4fe1b433bc161174ef60e7b42\",\"recorded\":2,\"scope\":\"synthetic\",\"sequence\":3,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":2}"
+      "sha256": "b0232c4a06155e1a7dc69c87c57274576e00e76d25420f8de3c3159fea4ff0eb",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"40950169cff38d87a2cfb85b685c0ce8bc2b81530f6677772cb0852a2df57e9b\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"context\":\"finite-task\",\"coordinate\":\"service\",\"evaluator\":\"evaluator-v1\",\"input\":\"48aed2374cea5f3bbbee1c8742439be758dcc1e999e0e3f0e03c1ee80e3565a0\",\"outcome\":\"success\",\"protocol\":\"holdout-v1\",\"quantity\":{\"joint-a\":\"1\"},\"receiver\":\"receiver-1\",\"task\":\"task-1\"},\"dependencies\":[\"create-child\"],\"episode\":\"episode-1\",\"evidence\":[\"check-creation\"],\"id\":\"reuse-child\",\"kind\":\"use\",\"previous\":\"7089c92239f88182e7232e28c8c4fad4810a286cdb89ff9c8a894e8da6d57686\",\"recorded\":2,\"scope\":\"synthetic\",\"sequence\":3,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":2}"
     },
     {
-      "sha256": "e910e618eb9804cf6e266629537e3bd5ea9ccd4ed89ed9b94f3890bb43681058",
-      "content": "{\"arm\":\"candidate\",\"contract\":\"431189647d374dbe1daf9b7151b1b10b4f85d34426a7313accd185d5d2a7ac61\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"context\":\"finite-task\",\"coordinate\":\"service\",\"evaluator\":\"evaluator-v1\",\"input\":\"48aed2374cea5f3bbbee1c8742439be758dcc1e999e0e3f0e03c1ee80e3565a0\",\"outcome\":\"success\",\"protocol\":\"holdout-v1\",\"quantity\":{\"joint-a\":\"1\"},\"receiver\":\"receiver-2\",\"task\":\"task-1\"},\"dependencies\":[\"create-child\"],\"episode\":\"episode-1\",\"evidence\":[\"check-receiver-2\"],\"id\":\"reuse-receiver-2\",\"kind\":\"use\",\"previous\":\"172ff7fe911a2bdad52e9450f16126680f37d8bb068c4c52da900393c63bedd4\",\"recorded\":3,\"scope\":\"synthetic\",\"sequence\":4,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":3}"
+      "sha256": "6f1c5aa14f8308bc6c8674babc6efa3dd112f940f6aacd4b4b68153b32c516f2",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"40950169cff38d87a2cfb85b685c0ce8bc2b81530f6677772cb0852a2df57e9b\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"context\":\"finite-task\",\"coordinate\":\"service\",\"evaluator\":\"evaluator-v1\",\"input\":\"48aed2374cea5f3bbbee1c8742439be758dcc1e999e0e3f0e03c1ee80e3565a0\",\"outcome\":\"success\",\"protocol\":\"holdout-v1\",\"quantity\":{\"joint-a\":\"1\"},\"receiver\":\"receiver-2\",\"task\":\"task-1\"},\"dependencies\":[\"create-child\"],\"episode\":\"episode-1\",\"evidence\":[\"check-receiver-2\"],\"id\":\"reuse-receiver-2\",\"kind\":\"use\",\"previous\":\"b0232c4a06155e1a7dc69c87c57274576e00e76d25420f8de3c3159fea4ff0eb\",\"recorded\":3,\"scope\":\"synthetic\",\"sequence\":4,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":3}"
     }
   ],
   "evidence": [
@@ -141,8 +142,8 @@
   ],
   "models": [
     {
-      "sha256": "55900c4bd5dc85f63db7acf3f188490e8f1dd8fbaa915e3bca9f3346e5719f3e",
-      "content": "{\"complete\":true,\"contract\":\"431189647d374dbe1daf9b7151b1b10b4f85d34426a7313accd185d5d2a7ac61\",\"episode\":\"episode-1\",\"evidence_basis\":\"synthetic\",\"exposure\":\"registered-parent-cohort\",\"external_boundary\":\"external-offspring-excluded\",\"family\":[{\"lower\":[[\"2\"]],\"upper\":[[\"3\"]]}],\"interpretation\":\"births_only\",\"iterations\":3,\"kind\":\"expected_offspring\",\"lower_witness\":{\"block\":[],\"bound\":\"2\",\"vector\":[\"1\"]},\"orientation\":\"rows-child-columns-parent\",\"record_type\":\"cait_reproduction_model_v1\",\"retention\":\"parents-excluded\",\"scope\":\"synthetic\",\"sources\":[\"create-child\"],\"time_basis\":\"generation\",\"types\":[\"qualified-artifact\"],\"upper_witness\":null,\"valid_from\":0,\"valid_until\":10}"
+      "sha256": "66d4afd1e561d2bdfe4b745a4ef8f24a1b905bddf4bd2a1c815ad28de1719428",
+      "content": "{\"complete\":true,\"contract\":\"40950169cff38d87a2cfb85b685c0ce8bc2b81530f6677772cb0852a2df57e9b\",\"episode\":\"episode-1\",\"evidence_basis\":\"synthetic\",\"exposure\":\"registered-parent-cohort\",\"external_boundary\":\"external-offspring-excluded\",\"family\":[{\"lower\":[[\"2\"]],\"upper\":[[\"3\"]]}],\"interpretation\":\"births_only\",\"iterations\":3,\"kind\":\"expected_offspring\",\"lower_witness\":{\"block\":[],\"bound\":\"2\",\"vector\":[\"1\"]},\"orientation\":\"rows-child-columns-parent\",\"record_type\":\"cait_reproduction_model_v1\",\"retention\":\"parents-excluded\",\"scope\":\"synthetic\",\"sources\":[\"create-child\"],\"time_basis\":\"generation\",\"types\":[\"qualified-artifact\"],\"upper_witness\":null,\"valid_from\":0,\"valid_until\":10}"
     }
   ]
 }

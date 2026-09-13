@@ -36,6 +36,7 @@ def inequality(a: list[list[Fraction]], witness: Json, lower: bool) -> bool:
 
 
 def reproduction(model: Json, prepared: Prepared | None = None, *, budget: int = 100000) -> Json:
+    require(model.get("family") != [], "empty_model", "Empty compatible model family", "inconsistent")
     validate(model, "model")
     unique(model["types"], "matrix types")
     n = len(model["types"])

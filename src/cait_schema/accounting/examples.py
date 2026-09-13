@@ -86,6 +86,7 @@ def fixture_parts() -> tuple[Json, list[Json], list[Json], list[Json]]:
         scope="synthetic",
         episode="episode-1",
         study="holdout",
+        time_unit="registered-tick",
         start=0,
         end=10,
         cutoff=12,

@@ -350,6 +350,7 @@ def check_report(bundle: Json, report: Json) -> Json:
                 start=p.contract["start"],
                 end=p.contract["end"],
                 cutoff=p.contract["cutoff"],
+                unit=p.contract["time_unit"],
                 endpoints="[start,end)",
             ),
             "report_window",

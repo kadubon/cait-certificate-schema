@@ -5,6 +5,7 @@
     "scope": "synthetic",
     "episode": "episode-1",
     "study": "holdout",
+    "time_unit": "registered-tick",
     "start": 0,
     "end": 10,
     "cutoff": 12,
@@ -78,7 +79,7 @@
         "checkpoint": "c39d75c5426988326e58c908d94a01be5b0bd0825be7ccabbc98aca0d0bb856b",
         "first": 1,
         "last": 5,
-        "terminal": "a17c6fde24a70e93b5ae28a593d840d72c8b9faa16a78bec272f59e5bc761373"
+        "terminal": "edf5b879ecc4f79164e263e93cb61c250d0cd242a27b2eb6a42f42aba4dc3e49"
       }
     ],
     "mandatory_events": [
@@ -115,24 +116,24 @@
   },
   "events": [
     {
-      "sha256": "545b808df801040b00500d8c9aaad0f1e82fffa7e83655200fe772921ed4a9ec",
-      "content": "{\"arm\":\"candidate\",\"contract\":\"083f22666bd0d5681f211858af03fe9ed41d1b2d9a7cff220fae061886bff21a\",\"costs\":[],\"data\":{\"cost_id\":\"physical-1\",\"quantity\":{\"joint-a\":\"1\"},\"stage\":\"formation\",\"unit\":\"work-hour\"},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[],\"id\":\"cost-formation\",\"kind\":\"cost\",\"previous\":\"c39d75c5426988326e58c908d94a01be5b0bd0825be7ccabbc98aca0d0bb856b\",\"recorded\":0,\"scope\":\"synthetic\",\"sequence\":1,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":0}"
+      "sha256": "0f0a9b13cc8de04fdc917732e14e2ddbf8e89c459220bcba4a970d1c0b34fbc9",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"3b8f18b6556c083e4c2daa6c202ef18a79b70c711c3b4104de1f0a677718cc37\",\"costs\":[],\"data\":{\"cost_id\":\"physical-1\",\"quantity\":{\"joint-a\":\"1\"},\"stage\":\"formation\",\"unit\":\"work-hour\"},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[],\"id\":\"cost-formation\",\"kind\":\"cost\",\"previous\":\"c39d75c5426988326e58c908d94a01be5b0bd0825be7ccabbc98aca0d0bb856b\",\"recorded\":0,\"scope\":\"synthetic\",\"sequence\":1,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":0}"
     },
     {
-      "sha256": "91dfb4db5f004c6979a901d07c2c4f9069659694e6c2ed57bc7aa2c16d0ba036",
-      "content": "{\"arm\":\"candidate\",\"contract\":\"083f22666bd0d5681f211858af03fe9ed41d1b2d9a7cff220fae061886bff21a\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"coordinate\":\"assets\",\"expires\":100,\"parent_shares\":{\"27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63\":\"1/2\",\"cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377\":\"1/2\"},\"parents\":[\"cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377\",\"27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63\"],\"quantity\":{\"joint-a\":\"5\"},\"shares\":{\"endogenous\":\"1\",\"external\":\"0\",\"unresolved\":\"0\"}},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[\"check-creation\"],\"id\":\"create-child\",\"kind\":\"create\",\"previous\":\"545b808df801040b00500d8c9aaad0f1e82fffa7e83655200fe772921ed4a9ec\",\"recorded\":1,\"scope\":\"synthetic\",\"sequence\":2,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":1}"
+      "sha256": "d69280b7b1b561a68329c01e4c856b58ddb0736721ad4953182cab33c8ca72af",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"3b8f18b6556c083e4c2daa6c202ef18a79b70c711c3b4104de1f0a677718cc37\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"coordinate\":\"assets\",\"expires\":100,\"parent_shares\":{\"27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63\":\"1/2\",\"cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377\":\"1/2\"},\"parents\":[\"cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377\",\"27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63\"],\"quantity\":{\"joint-a\":\"5\"},\"shares\":{\"endogenous\":\"1\",\"external\":\"0\",\"unresolved\":\"0\"}},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[\"check-creation\"],\"id\":\"create-child\",\"kind\":\"create\",\"previous\":\"0f0a9b13cc8de04fdc917732e14e2ddbf8e89c459220bcba4a970d1c0b34fbc9\",\"recorded\":1,\"scope\":\"synthetic\",\"sequence\":2,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":1}"
     },
     {
-      "sha256": "04423bb819762905efa165bd8d196e05b0928f6466c94512fa434d1b95e82b01",
-      "content": "{\"arm\":\"candidate\",\"contract\":\"083f22666bd0d5681f211858af03fe9ed41d1b2d9a7cff220fae061886bff21a\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"context\":\"finite-task\",\"coordinate\":\"service\",\"evaluator\":\"evaluator-v1\",\"input\":\"48aed2374cea5f3bbbee1c8742439be758dcc1e999e0e3f0e03c1ee80e3565a0\",\"outcome\":\"success\",\"protocol\":\"holdout-v1\",\"quantity\":{\"joint-a\":\"1\"},\"receiver\":\"receiver-1\",\"task\":\"task-1\"},\"dependencies\":[\"create-child\"],\"episode\":\"episode-1\",\"evidence\":[\"check-creation\"],\"id\":\"reuse-child\",\"kind\":\"use\",\"previous\":\"91dfb4db5f004c6979a901d07c2c4f9069659694e6c2ed57bc7aa2c16d0ba036\",\"recorded\":2,\"scope\":\"synthetic\",\"sequence\":3,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":2}"
+      "sha256": "1b57c9edccbe3810204b6fbee72d671045ca5bbbd2f5f2cfe622c30bd134e0e3",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"3b8f18b6556c083e4c2daa6c202ef18a79b70c711c3b4104de1f0a677718cc37\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"context\":\"finite-task\",\"coordinate\":\"service\",\"evaluator\":\"evaluator-v1\",\"input\":\"48aed2374cea5f3bbbee1c8742439be758dcc1e999e0e3f0e03c1ee80e3565a0\",\"outcome\":\"success\",\"protocol\":\"holdout-v1\",\"quantity\":{\"joint-a\":\"1\"},\"receiver\":\"receiver-1\",\"task\":\"task-1\"},\"dependencies\":[\"create-child\"],\"episode\":\"episode-1\",\"evidence\":[\"check-creation\"],\"id\":\"reuse-child\",\"kind\":\"use\",\"previous\":\"d69280b7b1b561a68329c01e4c856b58ddb0736721ad4953182cab33c8ca72af\",\"recorded\":2,\"scope\":\"synthetic\",\"sequence\":3,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":2}"
     },
     {
-      "sha256": "b5e7aa33c62a7237f677d4a27d70c8d619bc07fa89a98d35f244ce1dae54db32",
-      "content": "{\"arm\":\"candidate\",\"contract\":\"083f22666bd0d5681f211858af03fe9ed41d1b2d9a7cff220fae061886bff21a\",\"costs\":[],\"data\":{\"cost_id\":\"physical-2\",\"quantity\":{\"joint-a\":\"3\"},\"stage\":\"transfer\",\"unit\":\"work-hour\"},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[],\"id\":\"cost-transfer\",\"kind\":\"cost\",\"previous\":\"04423bb819762905efa165bd8d196e05b0928f6466c94512fa434d1b95e82b01\",\"recorded\":3,\"scope\":\"synthetic\",\"sequence\":4,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":3}"
+      "sha256": "670175923f75e9f4eb4eaacf4219a21b084b49c4183ce782f0380c9bc5c609c8",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"3b8f18b6556c083e4c2daa6c202ef18a79b70c711c3b4104de1f0a677718cc37\",\"costs\":[],\"data\":{\"cost_id\":\"physical-2\",\"quantity\":{\"joint-a\":\"3\"},\"stage\":\"transfer\",\"unit\":\"work-hour\"},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[],\"id\":\"cost-transfer\",\"kind\":\"cost\",\"previous\":\"1b57c9edccbe3810204b6fbee72d671045ca5bbbd2f5f2cfe622c30bd134e0e3\",\"recorded\":3,\"scope\":\"synthetic\",\"sequence\":4,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":3}"
     },
     {
-      "sha256": "a17c6fde24a70e93b5ae28a593d840d72c8b9faa16a78bec272f59e5bc761373",
-      "content": "{\"arm\":\"candidate\",\"contract\":\"083f22666bd0d5681f211858af03fe9ed41d1b2d9a7cff220fae061886bff21a\",\"costs\":[],\"data\":{\"cost_id\":\"physical-3\",\"quantity\":{\"joint-a\":\"3\"},\"stage\":\"maintenance\",\"unit\":\"work-hour\"},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[],\"id\":\"cost-maintenance\",\"kind\":\"cost\",\"previous\":\"b5e7aa33c62a7237f677d4a27d70c8d619bc07fa89a98d35f244ce1dae54db32\",\"recorded\":4,\"scope\":\"synthetic\",\"sequence\":5,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":4}"
+      "sha256": "edf5b879ecc4f79164e263e93cb61c250d0cd242a27b2eb6a42f42aba4dc3e49",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"3b8f18b6556c083e4c2daa6c202ef18a79b70c711c3b4104de1f0a677718cc37\",\"costs\":[],\"data\":{\"cost_id\":\"physical-3\",\"quantity\":{\"joint-a\":\"3\"},\"stage\":\"maintenance\",\"unit\":\"work-hour\"},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[],\"id\":\"cost-maintenance\",\"kind\":\"cost\",\"previous\":\"670175923f75e9f4eb4eaacf4219a21b084b49c4183ce782f0380c9bc5c609c8\",\"recorded\":4,\"scope\":\"synthetic\",\"sequence\":5,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":4}"
     }
   ],
   "evidence": [
@@ -143,8 +144,8 @@
   ],
   "models": [
     {
-      "sha256": "c422a667e0f2f4bfdd3734224e78225376470fe9796a07ace14f11e6b6edebf5",
-      "content": "{\"complete\":true,\"contract\":\"083f22666bd0d5681f211858af03fe9ed41d1b2d9a7cff220fae061886bff21a\",\"episode\":\"episode-1\",\"evidence_basis\":\"synthetic\",\"exposure\":\"registered-parent-cohort\",\"external_boundary\":\"external-offspring-excluded\",\"family\":[{\"lower\":[[\"2\"]],\"upper\":[[\"3\"]]}],\"interpretation\":\"births_only\",\"iterations\":3,\"kind\":\"expected_offspring\",\"lower_witness\":{\"block\":[],\"bound\":\"2\",\"vector\":[\"1\"]},\"orientation\":\"rows-child-columns-parent\",\"record_type\":\"cait_reproduction_model_v1\",\"retention\":\"parents-excluded\",\"scope\":\"synthetic\",\"sources\":[\"create-child\"],\"time_basis\":\"generation\",\"types\":[\"qualified-artifact\"],\"upper_witness\":null,\"valid_from\":0,\"valid_until\":10}"
+      "sha256": "273efc8a0ccbd42de851940f1d3cea4d2e5113ce25bfb8a45f411d0badac8606",
+      "content": "{\"complete\":true,\"contract\":\"3b8f18b6556c083e4c2daa6c202ef18a79b70c711c3b4104de1f0a677718cc37\",\"episode\":\"episode-1\",\"evidence_basis\":\"synthetic\",\"exposure\":\"registered-parent-cohort\",\"external_boundary\":\"external-offspring-excluded\",\"family\":[{\"lower\":[[\"2\"]],\"upper\":[[\"3\"]]}],\"interpretation\":\"births_only\",\"iterations\":3,\"kind\":\"expected_offspring\",\"lower_witness\":{\"block\":[],\"bound\":\"2\",\"vector\":[\"1\"]},\"orientation\":\"rows-child-columns-parent\",\"record_type\":\"cait_reproduction_model_v1\",\"retention\":\"parents-excluded\",\"scope\":\"synthetic\",\"sources\":[\"create-child\"],\"time_basis\":\"generation\",\"types\":[\"qualified-artifact\"],\"upper_witness\":null,\"valid_from\":0,\"valid_until\":10}"
     }
   ]
 }
