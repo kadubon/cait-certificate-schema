@@ -1,0 +1,1406 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cait-schema.local/schemas/accounting/v1/event.schema.json",
+  "title": "CAIT computation v1 event",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "contract": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "previous": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recorded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "arm": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "kind": {
+          "const": "create"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "artifact": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "coordinate": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "quantity": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              "maxProperties": 8
+            },
+            "shares": {
+              "type": "object",
+              "properties": {
+                "endogenous": {
+                  "type": "string",
+                  "maxLength": 81,
+                  "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+                },
+                "external": {
+                  "type": "string",
+                  "maxLength": 81,
+                  "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+                },
+                "unresolved": {
+                  "type": "string",
+                  "maxLength": 81,
+                  "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+                }
+              },
+              "required": [
+                "endogenous",
+                "external",
+                "unresolved"
+              ],
+              "additionalProperties": false
+            },
+            "parents": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "maxItems": 16,
+              "minItems": 0
+            },
+            "parent_shares": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              "maxProperties": 16
+            },
+            "expires": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            }
+          },
+          "required": [
+            "artifact",
+            "coordinate",
+            "quantity",
+            "shares",
+            "parents",
+            "parent_shares",
+            "expires"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "episode",
+        "contract",
+        "stream",
+        "sequence",
+        "previous",
+        "time",
+        "recorded",
+        "arm",
+        "study",
+        "kind",
+        "dependencies",
+        "evidence",
+        "costs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "contract": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "previous": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recorded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "arm": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "kind": {
+          "const": "use"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "artifact": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "coordinate": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "quantity": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              "maxProperties": 8
+            },
+            "receiver": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "context": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "task": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "input": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "evaluator": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "protocol": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "outcome": {
+              "enum": [
+                "success",
+                "failure",
+                "rejection",
+                "timeout",
+                "pending",
+                "censored"
+              ]
+            }
+          },
+          "required": [
+            "artifact",
+            "coordinate",
+            "quantity",
+            "receiver",
+            "context",
+            "task",
+            "input",
+            "evaluator",
+            "protocol",
+            "outcome"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "episode",
+        "contract",
+        "stream",
+        "sequence",
+        "previous",
+        "time",
+        "recorded",
+        "arm",
+        "study",
+        "kind",
+        "dependencies",
+        "evidence",
+        "costs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "contract": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "previous": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recorded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "arm": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "kind": {
+          "const": "cost"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "cost_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "unit": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "quantity": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              "maxProperties": 8
+            },
+            "stage": {
+              "enum": [
+                "formation",
+                "execution",
+                "transfer",
+                "validation",
+                "refresh",
+                "maintenance",
+                "repair"
+              ]
+            }
+          },
+          "required": [
+            "cost_id",
+            "unit",
+            "quantity",
+            "stage"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "episode",
+        "contract",
+        "stream",
+        "sequence",
+        "previous",
+        "time",
+        "recorded",
+        "arm",
+        "study",
+        "kind",
+        "dependencies",
+        "evidence",
+        "costs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "contract": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "previous": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recorded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "arm": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "kind": {
+          "const": "withdraw"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "artifact": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "reason": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            }
+          },
+          "required": [
+            "artifact",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "episode",
+        "contract",
+        "stream",
+        "sequence",
+        "previous",
+        "time",
+        "recorded",
+        "arm",
+        "study",
+        "kind",
+        "dependencies",
+        "evidence",
+        "costs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "contract": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "previous": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recorded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "arm": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "kind": {
+          "const": "expire"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "artifact": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "reason": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            }
+          },
+          "required": [
+            "artifact",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "episode",
+        "contract",
+        "stream",
+        "sequence",
+        "previous",
+        "time",
+        "recorded",
+        "arm",
+        "study",
+        "kind",
+        "dependencies",
+        "evidence",
+        "costs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "contract": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "previous": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recorded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "arm": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "kind": {
+          "const": "repair"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "artifact": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "reason": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            }
+          },
+          "required": [
+            "artifact",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "episode",
+        "contract",
+        "stream",
+        "sequence",
+        "previous",
+        "time",
+        "recorded",
+        "arm",
+        "study",
+        "kind",
+        "dependencies",
+        "evidence",
+        "costs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "contract": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "previous": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recorded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "arm": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "kind": {
+          "const": "revalidate"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "artifact": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "expires": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "reason": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            }
+          },
+          "required": [
+            "artifact",
+            "expires",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "episode",
+        "contract",
+        "stream",
+        "sequence",
+        "previous",
+        "time",
+        "recorded",
+        "arm",
+        "study",
+        "kind",
+        "dependencies",
+        "evidence",
+        "costs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "contract": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "previous": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recorded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "arm": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "kind": {
+          "const": "correct"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "target": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "quantity": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              "maxProperties": 8
+            },
+            "reason": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            }
+          },
+          "required": [
+            "target",
+            "quantity",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "episode",
+        "contract",
+        "stream",
+        "sequence",
+        "previous",
+        "time",
+        "recorded",
+        "arm",
+        "study",
+        "kind",
+        "dependencies",
+        "evidence",
+        "costs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "contract": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "previous": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recorded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "arm": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "kind": {
+          "const": "resolve_use"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "target": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            },
+            "quantity": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 81,
+                "pattern": "^-?(0|[1-9][0-9]*)(/[1-9][0-9]*)?$"
+              },
+              "maxProperties": 8
+            },
+            "outcome": {
+              "enum": [
+                "success",
+                "failure",
+                "rejection",
+                "timeout"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+            }
+          },
+          "required": [
+            "target",
+            "quantity",
+            "outcome",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "episode",
+        "contract",
+        "stream",
+        "sequence",
+        "previous",
+        "time",
+        "recorded",
+        "arm",
+        "study",
+        "kind",
+        "dependencies",
+        "evidence",
+        "costs",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "scope": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "episode": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "contract": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "previous": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recorded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "arm": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "study": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+        },
+        "kind": {
+          "const": "external_input"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+          },
+          "maxItems": 16,
+          "minItems": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "artifact": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "kind": {
+              "enum": [
+                "model",
+                "data",
+                "tool",
+                "human"
+              ]
+            },
+            "cost_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.:-]{1,80}$"
+              },
+              "maxItems": 16,
+              "minItems": 0
+            }
+          },
+          "required": [
+            "artifact",
+            "kind",
+            "cost_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "episode",
+        "contract",
+        "stream",
+        "sequence",
+        "previous",
+        "time",
+        "recorded",
+        "arm",
+        "study",
+        "kind",
+        "dependencies",
+        "evidence",
+        "costs",
+        "data"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

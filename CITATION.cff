@@ -6,8 +6,8 @@ authors:
     given-names: "K."
 license: "Apache-2.0"
 repository-code: "https://github.com/kadubon/cait-certificate-schema"
-version: "0.1.0"
-date-released: "2026-05-07"
+version: "0.2.0"
+date-released: "2026-09-13"
 references:
   - type: "article"
     title: "Certified Autocatalytic Intelligence Theory: Net-Growth Certificate Algebra for Verified Capability Capital"

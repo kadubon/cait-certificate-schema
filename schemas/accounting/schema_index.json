@@ -1,0 +1,8 @@
+{
+  "contract": "contract.schema.json",
+  "event": "event.schema.json",
+  "evidence": "evidence.schema.json",
+  "bundle": "bundle.schema.json",
+  "model": "model.schema.json",
+  "report": "report.schema.json"
+}

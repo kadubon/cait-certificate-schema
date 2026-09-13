@@ -36,3 +36,9 @@ desktop.ini
 # Local scratch
 tmp/
 scratch/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+coverage.json
+fault-results.json
+site/

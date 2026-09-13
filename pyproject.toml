@@ -1,6 +1,6 @@
 [project]
 name = "cait-certificate-schema"
-version = "0.1.0"
+version = "0.2.0"
 description = "JSON Schemas and local validation tooling for CAIT-style certified AI R&D capability-capital records."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -26,11 +26,22 @@ dev = [
 
 [dependency-groups]
 dev = [
-  "pytest>=8.0.0"
+  "build>=1.6.1",
+  "defusedxml>=0.7.1",
+  "hypothesis>=6.168.0",
+  "mkdocs>=1.6.1",
+  "mypy>=2.3.1",
+  "pip-audit>=2.10.1",
+  "pytest>=8.0.0",
+  "pytest-cov>=7.1.0",
+  "ruff>=0.16.7",
+  "twine>=7.0.0",
+  "types-jsonschema>=4.26.0.20260518",
 ]
 
 [project.scripts]
 cait-validate = "cait_schema.cli:main"
+cait-analyze = "cait_schema.accounting.cli:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -45,6 +56,8 @@ packages = ["src/cait_schema"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "schemas/cait" = "cait_schema/schemas/cait"
+"schemas/accounting" = "cait_schema/schemas/accounting"
+"examples/valid" = "cait_schema/legacy_examples"
 
 [tool.hatch.build.targets.sdist]
 include = [
@@ -57,5 +70,28 @@ include = [
   "/NOTICE",
   "/SECURITY.md",
   "/CITATION.cff",
-  "/pyproject.toml"
+  "/pyproject.toml",
+  "/docs", "/scripts", "/AGENTS.md", "/CHANGELOG.md", "/uv.lock",
+  "/security", "/mkdocs.yml"
 ]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 110
+include = ["src/cait_schema/accounting/**/*.py", "scripts/*.py", "tests/test_accounting*.py"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/cait_schema/accounting"]
+follow_imports = "silent"
+
+[tool.coverage.run]
+branch = true
+source = ["cait_schema.accounting"]
+
+[tool.coverage.report]
+show_missing = true

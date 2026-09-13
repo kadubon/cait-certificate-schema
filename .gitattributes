@@ -1,0 +1,4 @@
+schemas/accounting/** text eol=lf
+src/cait_schema/accounting/fixtures/*.json text eol=lf
+src/cait_schema/accounting/fixtures/companions/* -text
+docs/generated_reference.md text eol=lf

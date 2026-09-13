@@ -1,0 +1,140 @@
+{
+  "record_type": "cait_source_bundle_v1",
+  "contract": {
+    "record_type": "cait_computation_contract_v1",
+    "scope": "synthetic",
+    "episode": "episode-1",
+    "study": "holdout",
+    "start": 0,
+    "end": 10,
+    "cutoff": 12,
+    "checkpoint_time": 0,
+    "basis": "synthetic",
+    "interpretation": "as_of",
+    "coordinates": [
+      {
+        "id": "assets",
+        "unit": "qualified-artifact",
+        "meaning": "asset_stock"
+      },
+      {
+        "id": "service",
+        "unit": "qualified-task",
+        "meaning": "service_outcome"
+      }
+    ],
+    "receivers": [
+      {
+        "id": "receiver-1",
+        "context": "finite-task",
+        "task": "task-1",
+        "evaluator": "evaluator-v1",
+        "protocol": "holdout-v1",
+        "checks": [
+          "exact-check"
+        ]
+      },
+      {
+        "id": "receiver-2",
+        "context": "finite-task",
+        "task": "task-1",
+        "evaluator": "evaluator-v1",
+        "protocol": "holdout-v1",
+        "checks": [
+          "exact-check"
+        ]
+      }
+    ],
+    "arms": [
+      "candidate"
+    ],
+    "scenarios": [
+      "joint-a"
+    ],
+    "opening": [
+      {
+        "artifact": "cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377",
+        "coordinate": "assets",
+        "arm": "candidate",
+        "quantity": {
+          "joint-a": "1"
+        },
+        "expires": 100
+      },
+      {
+        "artifact": "27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63",
+        "coordinate": "assets",
+        "arm": "candidate",
+        "quantity": {
+          "joint-a": "1"
+        },
+        "expires": 100
+      }
+    ],
+    "streams": [
+      {
+        "id": "journal",
+        "arm": "candidate",
+        "checkpoint": "c39d75c5426988326e58c908d94a01be5b0bd0825be7ccabbc98aca0d0bb856b",
+        "first": 1,
+        "last": 3,
+        "terminal": "989528f6d4c5f3bcfd8a7a797a7ef37c0e92bc79f982be432c0c82a8bcad0f10"
+      }
+    ],
+    "mandatory_events": [
+      "cost-formation",
+      "create-child",
+      "reuse-child"
+    ],
+    "mandatory_costs": [
+      "physical-1"
+    ],
+    "negative_terms_complete": true,
+    "allocations": {},
+    "cost_units": [
+      "work-hour"
+    ],
+    "resource_limits": {
+      "work-hour": {
+        "joint-a": "100"
+      }
+    },
+    "valuation": {
+      "version": "valuation-v1",
+      "target": "assets",
+      "rates": {
+        "work-hour": {
+          "joint-a": "1"
+        }
+      }
+    },
+    "operation_budget": 100000,
+    "policy": "disjoint-origin-v1:content-dedup:propagate-revocation:half-open"
+  },
+  "events": [
+    {
+      "sha256": "f999a979aef6d94e9fa16d6f303de9756aaf617f2bdf00335122870cd2a0df25",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"1784b80fbc3293b4b2438839bf453595d2b61b25577f25af0094b9fc26752bc1\",\"costs\":[],\"data\":{\"cost_id\":\"physical-1\",\"quantity\":{\"joint-a\":\"1\"},\"stage\":\"formation\",\"unit\":\"work-hour\"},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[],\"id\":\"cost-formation\",\"kind\":\"cost\",\"previous\":\"c39d75c5426988326e58c908d94a01be5b0bd0825be7ccabbc98aca0d0bb856b\",\"recorded\":0,\"scope\":\"synthetic\",\"sequence\":1,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":0}"
+    },
+    {
+      "sha256": "c6d6e3a108f4169e387f98bd6cddde5714bb8561e4432ada11ad88fc7e403792",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"1784b80fbc3293b4b2438839bf453595d2b61b25577f25af0094b9fc26752bc1\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"coordinate\":\"assets\",\"expires\":100,\"parent_shares\":{\"27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63\":\"1/2\",\"cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377\":\"1/2\"},\"parents\":[\"cb6667cd59b1de3d366d0e560c8ce754a126af0e2da4e5a06ad8a855e052b377\",\"27f7d219e461adb956b835bd30041edf372b46c1e5cab4087740397241cb2a63\"],\"quantity\":{\"joint-a\":\"5\"},\"shares\":{\"endogenous\":\"1\",\"external\":\"0\",\"unresolved\":\"0\"}},\"dependencies\":[],\"episode\":\"episode-1\",\"evidence\":[\"check-creation\"],\"id\":\"create-child\",\"kind\":\"create\",\"previous\":\"f999a979aef6d94e9fa16d6f303de9756aaf617f2bdf00335122870cd2a0df25\",\"recorded\":1,\"scope\":\"synthetic\",\"sequence\":2,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":1}"
+    },
+    {
+      "sha256": "989528f6d4c5f3bcfd8a7a797a7ef37c0e92bc79f982be432c0c82a8bcad0f10",
+      "content": "{\"arm\":\"candidate\",\"contract\":\"1784b80fbc3293b4b2438839bf453595d2b61b25577f25af0094b9fc26752bc1\",\"costs\":[\"physical-1\"],\"data\":{\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"context\":\"finite-task\",\"coordinate\":\"service\",\"evaluator\":\"evaluator-v1\",\"input\":\"48aed2374cea5f3bbbee1c8742439be758dcc1e999e0e3f0e03c1ee80e3565a0\",\"outcome\":\"success\",\"protocol\":\"holdout-v1\",\"quantity\":{\"joint-a\":\"1\"},\"receiver\":\"receiver-1\",\"task\":\"task-1\"},\"dependencies\":[\"create-child\"],\"episode\":\"episode-1\",\"evidence\":[\"check-creation\"],\"id\":\"reuse-child\",\"kind\":\"use\",\"previous\":\"c6d6e3a108f4169e387f98bd6cddde5714bb8561e4432ada11ad88fc7e403792\",\"recorded\":2,\"scope\":\"synthetic\",\"sequence\":3,\"stream\":\"journal\",\"study\":\"holdout\",\"time\":2}"
+    }
+  ],
+  "evidence": [
+    {
+      "sha256": "75da5cf7f5cee1ccbaa2ec2d8710809b833191fb82015ee45b28b03ce2d61cb5",
+      "content": "{\"arm\":\"candidate\",\"artifact\":\"0afbc7c3c11c0f7d165fc3801ee0a4f400832fcb600a05f20d7d6a2d860711da\",\"blocking_defeaters\":[],\"check\":\"exact-check\",\"context\":\"finite-task\",\"cost_ids\":[\"physical-1\"],\"dependencies\":[\"check-creation\"],\"evaluator\":\"evaluator-v1\",\"id\":\"check-creation\",\"outcome\":\"pass\",\"protocol\":\"holdout-v1\",\"receiver\":\"receiver-1\",\"scope\":\"synthetic\",\"valid_from\":0,\"valid_until\":100}"
+    }
+  ],
+  "models": [
+    {
+      "sha256": "d594f0bcc319c259a374e2c5e9c4d2d478e3e7e1a2f9a4a048dbae9466b05048",
+      "content": "{\"complete\":true,\"contract\":\"1784b80fbc3293b4b2438839bf453595d2b61b25577f25af0094b9fc26752bc1\",\"episode\":\"episode-1\",\"evidence_basis\":\"synthetic\",\"exposure\":\"registered-parent-cohort\",\"external_boundary\":\"external-offspring-excluded\",\"family\":[{\"lower\":[[\"2\"]],\"upper\":[[\"3\"]]}],\"interpretation\":\"births_only\",\"iterations\":3,\"kind\":\"expected_offspring\",\"lower_witness\":{\"block\":[],\"bound\":\"2\",\"vector\":[\"1\"]},\"orientation\":\"rows-child-columns-parent\",\"record_type\":\"cait_reproduction_model_v1\",\"retention\":\"parents-excluded\",\"scope\":\"synthetic\",\"sources\":[\"create-child\"],\"time_basis\":\"generation\",\"types\":[\"qualified-artifact\"],\"upper_witness\":null,\"valid_from\":0,\"valid_until\":10}"
+    }
+  ]
+}
