@@ -1,34 +1,68 @@
 # CAIT Certificate Schema
 
-JSON Schemas for CAIT-style records: certificates, tokens, defeaters, transfer/evaluation boundaries, window balances, and arrival records.
-Deterministic local validation checks record shape plus lightweight fail-closed semantics.
-This is not an AGI detector, model evaluator, deployment authorization system, or safety guarantee.
+Did a system create new qualified capability, merely reuse or copy something, or
+incur costs without completing work? CAIT Certificate Schema makes those distinctions
+explicit in supplied records and finite source histories. CAIT expands to
+**Certified Autocatalytic Intelligence Theory**.
 
-Version 0.2.0 additionally provides an opt-in **experimental finite accounting kernel**:
-`cait-analyze example interchange` runs source-bound replay, exact balances, conditional
-reproduction witnesses, an independent report checker and pinned released VEK/CCR adapters.
-Read [accounting semantics](docs/accounting.md), [CLI/API](docs/cli.md),
-[mathematical boundaries](docs/reproduction.md) and [release evidence](docs/release.md).
-The established schemas and `cait-validate` retain their original meanings.
+Current source and [published package](https://pypi.org/project/cait-certificate-schema/0.2.0/):
+**0.2.0**, Python 3.11+, Apache-2.0. See the [identified release evidence](docs/release.md).
+Two separate paths are available:
+
+- **Legacy `cait-validate`:** checks a supplied record's schema and lightweight
+  declared semantics. It does not reconstruct source history.
+- **Experimental `cait-analyze`:** reconstructs a finite accounting report from a
+  registered source bundle, then supports an independent report check. It does not
+  authenticate sources, identify causal effects or authorize execution.
+
+This is technical evidence accounting, not financial-reporting certification, tax
+accounting, an automatic invoice collector, a model evaluator or an AGI detector.
 
 ## Start Here
 
-If you are new to the project, read these files in order:
+Start with the [accounting contract](docs/accounting.md) and [CLI/API](docs/cli.md)
+for replay, or the [legacy schema index](schemas/cait/schema_index.json) and
+[portable semantic rules](schemas/cait/semantic_rules.json) for record validation.
+The [reproduction contract](docs/reproduction.md) bounds conditional mathematics;
+[interchange](docs/interchange.md) preserves version-specific external obligations.
 
-1. `schemas/cait/schema_index.json`: maps each `record_type` to its schema file and semantic profile.
-2. `schemas/cait/semantic_rules.json`: lists portable fail-closed rule IDs and logic.
-3. `examples/valid/arrival_record.json`: shows a complete synthetic arrival record accepted by the local validator.
+## Quick Start
 
-Minimal adoption path:
+Installed-package path, in an isolated Python environment (POSIX shell or PowerShell):
 
-1. Use `schema_index.json` to choose the schema for each `record_type`.
-2. Run JSON Schema Draft 2020-12 structural validation.
-3. Implement the rule IDs in `semantic_rules.json` that apply to your record types.
-4. Keep local registry thresholds, evidence rules, and evaluation boundaries explicit in your own records.
+```sh
+python -m pip install cait-certificate-schema==0.2.0
+cait-analyze example interchange
+```
 
-This repository is based on:
+Installation may access the package index. The packaged example then runs offline,
+needs no companion installation or API key, and emits a source bundle, report and
+independent check to stdout without writing a ledger or dispatching work. Its
+quantities are synthetic. Inspect the analysis/check status and unresolved fields,
+not just the exit code. `cait-analyze example inconsistent` deliberately completes
+as a command while showing a failed analysis/check.
 
-Takahashi, K. (2026). *Certified Autocatalytic Intelligence Theory: Net-Growth Certificate Algebra for Verified Capability Capital*. Zenodo. https://doi.org/10.5281/zenodo.20061296
+For your own existing local bundle, `cait-analyze window` computes the report and
+`cait-analyze check-report` checks it against original sources. See [exact syntax](docs/cli.md).
+`--out` writes a new derived file and refuses an existing destination. Missing
+evidence remains incomplete/unknown; process success does not imply positive growth.
+Stock, service, external inputs, unresolved attribution, losses and typed costs are
+separate quantities. Currency, time and capability are not implicitly interchangeable.
+
+For source-checkout use instead, from the repository root:
+
+```sh
+uv sync
+uv run cait-validate examples/valid/arrival_record.json
+uv run cait-validate examples/valid/minimal_certificate_record.json --schema certificate_record
+```
+
+`uv sync` prepares dependencies; unprepared `uv run` may install them. Validation
+reads the existing checkout fixtures and emits results; installed users must supply
+their own files rather than assume `examples/` exists in the current directory.
+Without `--schema`, the legacy validator uses `record_type`. Commands here are
+source-checked, not newly execution-verified. Software tests belong to contributor
+verification, not installation.
 
 ## What This Project Is
 
@@ -81,22 +115,6 @@ CAIT treats acceleration as certified net reproduction of verified capability ca
 
 The fail-closed principle is central: if a positive claim depends on missing evidence, missing scope, unresolved severe defeaters, invalid lifecycle status, invalid transfer/evaluation boundary, or non-positive endogenous net growth, the local validator reports that the record cannot support a positive CAIT-style claim.
 
-## Quick Start
-
-```bash
-uv sync
-uv run cait-validate examples/valid/arrival_record.json
-uv run pytest
-```
-
-Validate a specific schema:
-
-```bash
-uv run cait-validate examples/valid/minimal_certificate_record.json --schema certificate_record
-```
-
-If `--schema` is omitted, the validator infers the schema from the top-level `record_type` field.
-
 ## For Non-Python Users
 
 Python is only a reference validator. It is not the only specification. Other implementations can use the language-neutral files directly:
@@ -132,6 +150,11 @@ The `portable_logic` fields are JSONPath-like pseudocode for implementers. They 
 - `safety_control_status`: whether service and safety-control constraints pass, fail, or remain conditional.
 
 ## Minimal Example
+
+This is a **legacy synthetic `arrival_record`**, with the original floating-point
+and Boolean semantics. It is not a source bundle for the experimental accounting
+kernel. Supplied acceptance flags do not replace source replay, authentication or
+causal identification. The complete fixture is [arrival_record.json](examples/valid/arrival_record.json).
 
 ```json
 {
@@ -253,3 +276,11 @@ Takahashi, K. (2026). *Certified Autocatalytic Intelligence Theory: Net-Growth C
 ## License
 
 Apache License 2.0. See `LICENSE`.
+
+## Research navigation
+
+For the theory and neighboring components, use the
+[Collective Intelligence Research and OSS Index](https://kadubon.github.io/github.io/collective-intelligence-index.html),
+including [capability accounting](https://kadubon.github.io/github.io/collective-intelligence-index.html#problem-accounting)
+and [cost and capacity](https://kadubon.github.io/github.io/collective-intelligence-index.html#problem-cost-and-capacity).
+Discovery does not confer scientific validity or execution authority.
